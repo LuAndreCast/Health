@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>URL_STEPS</key>
+	<string>https://api.fitbit.com/1/user/-/activities/steps/date/today</string>
+	<key>URL_USER</key>
+	<string>https://api.fitbit.com/1/user/-/profile.json</string>
+	<key>URL_TOKEN</key>
+	<string>https://api.fitbit.com/oauth2/token</string>
+	<key>URL_AUTH</key>
+	<string>https://www.fitbit.com/oauth2/authorize?</string>
+	<key>SCOPE</key>
+	<string>activity%20heartrate%20location%20nutrition%20profile%20settings%20sleep%20social%20weight</string>
+	<key>REDIRECT_URI</key>
+	<string>Health://</string>
+	<key>SECRET_KEY</key>
+	<string>ENTER SECRET KEY HERE</string>
+	<key>CLIENT_ID</key>
+	<string>ENTER CLIENT ID</string>
+</dict>
+</plist>

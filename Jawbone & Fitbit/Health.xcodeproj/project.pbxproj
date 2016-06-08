@@ -1,0 +1,428 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F7B491571CA97DDF00A74EE9 /* StepsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7B491561CA97DDF00A74EE9 /* StepsTableViewController.swift */; };
+		F7B4915B1CA97F6300A74EE9 /* stepTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7B4915A1CA97F6300A74EE9 /* stepTableViewCell.swift */; };
+		F7BB1B3A1CA08F69009BC520 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BB1B391CA08F69009BC520 /* MainViewController.swift */; };
+		F7E68D031C972BB700181822 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E68D021C972BB700181822 /* AppDelegate.swift */; };
+		F7E68D081C972BB700181822 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7E68D061C972BB700181822 /* Main.storyboard */; };
+		F7E68D0A1C972BB700181822 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7E68D091C972BB700181822 /* Assets.xcassets */; };
+		F7E68D0D1C972BB700181822 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7E68D0B1C972BB700181822 /* LaunchScreen.storyboard */; };
+		F7F511161CAC7573008AA021 /* MaterialButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F511151CAC7573008AA021 /* MaterialButton.swift */; };
+		F7F511181CAC7580008AA021 /* WebAuthVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7F511171CAC7580008AA021 /* WebAuthVC.xib */; };
+		F7F5111B1CAC758E008AA021 /* nsdateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F511191CAC758E008AA021 /* nsdateExtension.swift */; };
+		F7F5111C1CAC758E008AA021 /* standardDefaultsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F5111A1CAC758E008AA021 /* standardDefaultsExtension.swift */; };
+		F7F511241CAC759E008AA021 /* Responders.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F5111F1CAC759E008AA021 /* Responders.swift */; };
+		F7F511251CAC759E008AA021 /* Selector.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F511201CAC759E008AA021 /* Selector.swift */; };
+		F7F511261CAC759E008AA021 /* Step.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F511211CAC759E008AA021 /* Step.swift */; };
+		F7F511281CAC75B9008AA021 /* Fitbit.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F511271CAC75B9008AA021 /* Fitbit.swift */; };
+		F7F5112D1CAC75D5008AA021 /* Jawbone.plist in Resources */ = {isa = PBXBuildFile; fileRef = F7F5112B1CAC75D5008AA021 /* Jawbone.plist */; };
+		F7F5112E1CAC75D5008AA021 /* Jawbone.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F5112C1CAC75D5008AA021 /* Jawbone.swift */; };
+		F7F511301CAC75E1008AA021 /* Fitbit.plist in Resources */ = {isa = PBXBuildFile; fileRef = F7F5112F1CAC75E1008AA021 /* Fitbit.plist */; };
+		F7F511321CAC7608008AA021 /* Oauth.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F511311CAC7608008AA021 /* Oauth.swift */; };
+		F7F511361CAC7635008AA021 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F511331CAC7635008AA021 /* Constants.swift */; };
+		F7F511371CAC7635008AA021 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F511341CAC7635008AA021 /* DateFormatter.swift */; };
+		F7F511381CAC7635008AA021 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F511351CAC7635008AA021 /* Parser.swift */; };
+		F7F5113B1CAC7650008AA021 /* WebAuthVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F5113A1CAC7650008AA021 /* WebAuthVC.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		F7B491561CA97DDF00A74EE9 /* StepsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepsTableViewController.swift; sourceTree = "<group>"; };
+		F7B4915A1CA97F6300A74EE9 /* stepTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = stepTableViewCell.swift; sourceTree = "<group>"; };
+		F7BB1B391CA08F69009BC520 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		F7E68CFF1C972BB700181822 /* Health.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Health.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F7E68D021C972BB700181822 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F7E68D071C972BB700181822 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F7E68D091C972BB700181822 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F7E68D0C1C972BB700181822 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F7E68D0E1C972BB700181822 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F7F511151CAC7573008AA021 /* MaterialButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaterialButton.swift; sourceTree = "<group>"; };
+		F7F511171CAC7580008AA021 /* WebAuthVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WebAuthVC.xib; path = FitbitJawboneSelector/Oauth/webview/WebAuthVC.xib; sourceTree = "<group>"; };
+		F7F511191CAC758E008AA021 /* nsdateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = nsdateExtension.swift; path = FitbitJawboneSelector/Extensions/nsdateExtension.swift; sourceTree = "<group>"; };
+		F7F5111A1CAC758E008AA021 /* standardDefaultsExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = standardDefaultsExtension.swift; path = FitbitJawboneSelector/Extensions/standardDefaultsExtension.swift; sourceTree = "<group>"; };
+		F7F5111F1CAC759E008AA021 /* Responders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Responders.swift; path = FitbitJawboneSelector/Responders.swift; sourceTree = "<group>"; };
+		F7F511201CAC759E008AA021 /* Selector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Selector.swift; path = FitbitJawboneSelector/Selector.swift; sourceTree = "<group>"; };
+		F7F511211CAC759E008AA021 /* Step.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Step.swift; path = FitbitJawboneSelector/Step.swift; sourceTree = "<group>"; };
+		F7F511271CAC75B9008AA021 /* Fitbit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Fitbit.swift; path = FitbitJawboneSelector/Fitbit/Fitbit.swift; sourceTree = "<group>"; };
+		F7F5112B1CAC75D5008AA021 /* Jawbone.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Jawbone.plist; path = FitbitJawboneSelector/Jawbone/Jawbone.plist; sourceTree = "<group>"; };
+		F7F5112C1CAC75D5008AA021 /* Jawbone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Jawbone.swift; path = FitbitJawboneSelector/Jawbone/Jawbone.swift; sourceTree = "<group>"; };
+		F7F5112F1CAC75E1008AA021 /* Fitbit.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Fitbit.plist; path = FitbitJawboneSelector/Fitbit/Fitbit.plist; sourceTree = "<group>"; };
+		F7F511311CAC7608008AA021 /* Oauth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Oauth.swift; path = FitbitJawboneSelector/Oauth/Oauth.swift; sourceTree = "<group>"; };
+		F7F511331CAC7635008AA021 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = FitbitJawboneSelector/Utilities/Constants.swift; sourceTree = "<group>"; };
+		F7F511341CAC7635008AA021 /* DateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DateFormatter.swift; path = FitbitJawboneSelector/Utilities/DateFormatter.swift; sourceTree = "<group>"; };
+		F7F511351CAC7635008AA021 /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Parser.swift; path = FitbitJawboneSelector/Utilities/Parser.swift; sourceTree = "<group>"; };
+		F7F5113A1CAC7650008AA021 /* WebAuthVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebAuthVC.swift; path = FitbitJawboneSelector/Oauth/webview/WebAuthVC.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F7E68CFC1C972BB700181822 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F7BB1B3D1CA0A183009BC520 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F7F511191CAC758E008AA021 /* nsdateExtension.swift */,
+				F7F5111A1CAC758E008AA021 /* standardDefaultsExtension.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		F7E68CF61C972BB700181822 = {
+			isa = PBXGroup;
+			children = (
+				F7E68D011C972BB700181822 /* Health */,
+				F7E68D001C972BB700181822 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F7E68D001C972BB700181822 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F7E68CFF1C972BB700181822 /* Health.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F7E68D011C972BB700181822 /* Health */ = {
+			isa = PBXGroup;
+			children = (
+				F7E68D021C972BB700181822 /* AppDelegate.swift */,
+				F7E68D0E1C972BB700181822 /* Info.plist */,
+				F7E68D161C972C0B00181822 /* Controller */,
+				F7BB1B3D1CA0A183009BC520 /* Extensions */,
+				F7E68D141C972BFE00181822 /* Model */,
+				F7E68D2C1C987CBA00181822 /* Utilities */,
+				F7E68D151C972C0300181822 /* View */,
+			);
+			path = Health;
+			sourceTree = "<group>";
+		};
+		F7E68D141C972BFE00181822 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F7F511201CAC759E008AA021 /* Selector.swift */,
+				F7F5111F1CAC759E008AA021 /* Responders.swift */,
+				F7F511211CAC759E008AA021 /* Step.swift */,
+				F7F511391CAC7641008AA021 /* Oauth */,
+				F7F5112A1CAC75C8008AA021 /* Jawbone */,
+				F7F511291CAC75BC008AA021 /* Fitbit */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		F7E68D151C972C0300181822 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F7F511151CAC7573008AA021 /* MaterialButton.swift */,
+				F7E68D061C972BB700181822 /* Main.storyboard */,
+				F7E68D091C972BB700181822 /* Assets.xcassets */,
+				F7E68D0B1C972BB700181822 /* LaunchScreen.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		F7E68D161C972C0B00181822 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				F7BB1B391CA08F69009BC520 /* MainViewController.swift */,
+				F7B491561CA97DDF00A74EE9 /* StepsTableViewController.swift */,
+				F7B4915A1CA97F6300A74EE9 /* stepTableViewCell.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		F7E68D2C1C987CBA00181822 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				F7F511331CAC7635008AA021 /* Constants.swift */,
+				F7F511341CAC7635008AA021 /* DateFormatter.swift */,
+				F7F511351CAC7635008AA021 /* Parser.swift */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
+		F7F511291CAC75BC008AA021 /* Fitbit */ = {
+			isa = PBXGroup;
+			children = (
+				F7F5112F1CAC75E1008AA021 /* Fitbit.plist */,
+				F7F511271CAC75B9008AA021 /* Fitbit.swift */,
+			);
+			name = Fitbit;
+			sourceTree = "<group>";
+		};
+		F7F5112A1CAC75C8008AA021 /* Jawbone */ = {
+			isa = PBXGroup;
+			children = (
+				F7F5112B1CAC75D5008AA021 /* Jawbone.plist */,
+				F7F5112C1CAC75D5008AA021 /* Jawbone.swift */,
+			);
+			name = Jawbone;
+			sourceTree = "<group>";
+		};
+		F7F511391CAC7641008AA021 /* Oauth */ = {
+			isa = PBXGroup;
+			children = (
+				F7F511311CAC7608008AA021 /* Oauth.swift */,
+				F7F511171CAC7580008AA021 /* WebAuthVC.xib */,
+				F7F5113A1CAC7650008AA021 /* WebAuthVC.swift */,
+			);
+			name = Oauth;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F7E68CFE1C972BB700181822 /* Health */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F7E68D111C972BB700181822 /* Build configuration list for PBXNativeTarget "Health" */;
+			buildPhases = (
+				F7E68CFB1C972BB700181822 /* Sources */,
+				F7E68CFC1C972BB700181822 /* Frameworks */,
+				F7E68CFD1C972BB700181822 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Health;
+			productName = Health;
+			productReference = F7E68CFF1C972BB700181822 /* Health.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F7E68CF71C972BB700181822 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = LC;
+				TargetAttributes = {
+					F7E68CFE1C972BB700181822 = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
+				};
+			};
+			buildConfigurationList = F7E68CFA1C972BB700181822 /* Build configuration list for PBXProject "Health" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F7E68CF61C972BB700181822;
+			productRefGroup = F7E68D001C972BB700181822 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F7E68CFE1C972BB700181822 /* Health */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F7E68CFD1C972BB700181822 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F7F511301CAC75E1008AA021 /* Fitbit.plist in Resources */,
+				F7E68D0D1C972BB700181822 /* LaunchScreen.storyboard in Resources */,
+				F7E68D0A1C972BB700181822 /* Assets.xcassets in Resources */,
+				F7F511181CAC7580008AA021 /* WebAuthVC.xib in Resources */,
+				F7F5112D1CAC75D5008AA021 /* Jawbone.plist in Resources */,
+				F7E68D081C972BB700181822 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F7E68CFB1C972BB700181822 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F7F511371CAC7635008AA021 /* DateFormatter.swift in Sources */,
+				F7F511361CAC7635008AA021 /* Constants.swift in Sources */,
+				F7E68D031C972BB700181822 /* AppDelegate.swift in Sources */,
+				F7F511321CAC7608008AA021 /* Oauth.swift in Sources */,
+				F7B491571CA97DDF00A74EE9 /* StepsTableViewController.swift in Sources */,
+				F7F5111C1CAC758E008AA021 /* standardDefaultsExtension.swift in Sources */,
+				F7F511241CAC759E008AA021 /* Responders.swift in Sources */,
+				F7BB1B3A1CA08F69009BC520 /* MainViewController.swift in Sources */,
+				F7F511261CAC759E008AA021 /* Step.swift in Sources */,
+				F7B4915B1CA97F6300A74EE9 /* stepTableViewCell.swift in Sources */,
+				F7F511281CAC75B9008AA021 /* Fitbit.swift in Sources */,
+				F7F511161CAC7573008AA021 /* MaterialButton.swift in Sources */,
+				F7F5113B1CAC7650008AA021 /* WebAuthVC.swift in Sources */,
+				F7F5111B1CAC758E008AA021 /* nsdateExtension.swift in Sources */,
+				F7F511381CAC7635008AA021 /* Parser.swift in Sources */,
+				F7F5112E1CAC75D5008AA021 /* Jawbone.swift in Sources */,
+				F7F511251CAC759E008AA021 /* Selector.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		F7E68D061C972BB700181822 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F7E68D071C972BB700181822 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		F7E68D0B1C972BB700181822 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F7E68D0C1C972BB700181822 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F7E68D0F1C972BB700181822 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		F7E68D101C972BB700181822 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F7E68D121C972BB700181822 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Health/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = LC.Health;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		F7E68D131C972BB700181822 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Health/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = LC.Health;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F7E68CFA1C972BB700181822 /* Build configuration list for PBXProject "Health" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F7E68D0F1C972BB700181822 /* Debug */,
+				F7E68D101C972BB700181822 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F7E68D111C972BB700181822 /* Build configuration list for PBXNativeTarget "Health" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F7E68D121C972BB700181822 /* Debug */,
+				F7E68D131C972BB700181822 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F7E68CF71C972BB700181822 /* Project object */;
+}

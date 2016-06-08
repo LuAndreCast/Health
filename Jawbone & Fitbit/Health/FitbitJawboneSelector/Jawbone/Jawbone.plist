@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>URL_STEPS</key>
+	<string>https://jawbone.com/nudge/api/v.1.1/users/@me/moves?</string>
+	<key>URL_USER</key>
+	<string>https://jawbone.com/nudge/api/v.1.1/users/@me</string>
+	<key>URL_TOKEN</key>
+	<string>https://jawbone.com/auth/oauth2/token</string>
+	<key>URL_AUTH</key>
+	<string>https://jawbone.com/auth/oauth2/auth?</string>
+	<key>SCOPE</key>
+	<string>extended_read%20move_read</string>
+	<key>REDIRECT_URI</key>
+	<string>JawboneAuth://redirect</string>
+	<key>SECRET_KEY</key>
+	<string>ENTER SECRET KEY HERE</string>
+	<key>CLIENT_ID</key>
+	<string>ENTER CLIENT ID</string>
+</dict>
+</plist>
