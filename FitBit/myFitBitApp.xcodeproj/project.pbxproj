@@ -1,0 +1,452 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DE95EAF91C94C8050000C21C /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE95EAF81C94C8050000C21C /* Storage.swift */; };
+		DE95EAFB1C94D4C80000C21C /* Communicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE95EAFA1C94D4C80000C21C /* Communicator.swift */; };
+		F73609EF1C920A29003DA222 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F73609EE1C920A29003DA222 /* User.swift */; };
+		F73609F11C920E8B003DA222 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = F73609F01C920E8B003DA222 /* Image.swift */; };
+		F73609F31C921CFF003DA222 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = F73609F21C921CFF003DA222 /* Device.swift */; };
+		F77899851C922198005DA792 /* Achievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77899841C922198005DA792 /* Achievement.swift */; };
+		F77899871C922A41005DA792 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77899861C922A41005DA792 /* Color.swift */; };
+		F77899891C923166005DA792 /* Achievements.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77899881C923166005DA792 /* Achievements.swift */; };
+		F778998B1C923382005DA792 /* LifeTimeStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = F778998A1C923382005DA792 /* LifeTimeStats.swift */; };
+		F77B10BB1C9084E3007CB7C1 /* ActivityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77B10BA1C9084E3007CB7C1 /* ActivityTableViewCell.swift */; };
+		F77B10BD1C9084F2007CB7C1 /* ActivityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77B10BC1C9084F2007CB7C1 /* ActivityTableViewController.swift */; };
+		F792B5601C937F2900688880 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F792B55F1C937F2900688880 /* Helper.swift */; };
+		F792B5621C937FF400688880 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = F792B5611C937FF400688880 /* Activity.swift */; };
+		F7BEC4171C8E0B140018CDEA /* FriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BEC4161C8E0B140018CDEA /* FriendsTableViewController.swift */; };
+		F7BEC4191C8E0B230018CDEA /* BadgesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BEC4181C8E0B230018CDEA /* BadgesTableViewController.swift */; };
+		F7BEC41B1C8E0B500018CDEA /* ActivitesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BEC41A1C8E0B500018CDEA /* ActivitesViewController.swift */; };
+		F7BEC41D1C8E1BE70018CDEA /* badgesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BEC41C1C8E1BE70018CDEA /* badgesTableViewCell.swift */; };
+		F7C736431C8F5B9500CD4704 /* FriendsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C736421C8F5B9500CD4704 /* FriendsTableViewCell.swift */; };
+		F7C736461C8F702A00CD4704 /* defaultProfileFemale.gif in Resources */ = {isa = PBXBuildFile; fileRef = F7C736451C8F702A00CD4704 /* defaultProfileFemale.gif */; };
+		F7CD00171C84FC8800F126F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7CD00161C84FC8800F126F5 /* AppDelegate.swift */; };
+		F7CD00191C84FC8800F126F5 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7CD00181C84FC8800F126F5 /* UserViewController.swift */; };
+		F7CD001C1C84FC8800F126F5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7CD001A1C84FC8800F126F5 /* Main.storyboard */; };
+		F7CD001E1C84FC8800F126F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7CD001D1C84FC8800F126F5 /* Assets.xcassets */; };
+		F7CD00211C84FC8800F126F5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7CD001F1C84FC8800F126F5 /* LaunchScreen.storyboard */; };
+		F7CE70581C8A42E200789427 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7CE70571C8A42E200789427 /* HomeViewController.swift */; };
+		F7CE70611C8DC89A00789427 /* Fitbit.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7CE70601C8DC89A00789427 /* Fitbit.swift */; };
+		F7EE07B11C91EBC100E160D4 /* Friends.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7EE07B01C91EBC100E160D4 /* Friends.swift */; };
+		F7EE07B31C91EBFE00E160D4 /* FitbitAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7EE07B21C91EBFE00E160D4 /* FitbitAPI.swift */; };
+		F7EE07B51C91EC7A00E160D4 /* Oauth.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7EE07B41C91EC7A00E160D4 /* Oauth.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		DE95EAF81C94C8050000C21C /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		DE95EAFA1C94D4C80000C21C /* Communicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Communicator.swift; sourceTree = "<group>"; };
+		F73609EE1C920A29003DA222 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		F73609F01C920E8B003DA222 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		F73609F21C921CFF003DA222 /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
+		F77899841C922198005DA792 /* Achievement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Achievement.swift; sourceTree = "<group>"; };
+		F77899861C922A41005DA792 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		F77899881C923166005DA792 /* Achievements.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Achievements.swift; sourceTree = "<group>"; };
+		F778998A1C923382005DA792 /* LifeTimeStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LifeTimeStats.swift; sourceTree = "<group>"; };
+		F77B10BA1C9084E3007CB7C1 /* ActivityTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityTableViewCell.swift; sourceTree = "<group>"; };
+		F77B10BC1C9084F2007CB7C1 /* ActivityTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityTableViewController.swift; sourceTree = "<group>"; };
+		F792B55F1C937F2900688880 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		F792B5611C937FF400688880 /* Activity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
+		F7BEC4161C8E0B140018CDEA /* FriendsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsTableViewController.swift; sourceTree = "<group>"; };
+		F7BEC4181C8E0B230018CDEA /* BadgesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadgesTableViewController.swift; sourceTree = "<group>"; };
+		F7BEC41A1C8E0B500018CDEA /* ActivitesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivitesViewController.swift; sourceTree = "<group>"; };
+		F7BEC41C1C8E1BE70018CDEA /* badgesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = badgesTableViewCell.swift; sourceTree = "<group>"; };
+		F7C736421C8F5B9500CD4704 /* FriendsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsTableViewCell.swift; sourceTree = "<group>"; };
+		F7C736451C8F702A00CD4704 /* defaultProfileFemale.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = defaultProfileFemale.gif; sourceTree = "<group>"; };
+		F7CD00131C84FC8800F126F5 /* myFitBitApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = myFitBitApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F7CD00161C84FC8800F126F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F7CD00181C84FC8800F126F5 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
+		F7CD001B1C84FC8800F126F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F7CD001D1C84FC8800F126F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F7CD00201C84FC8800F126F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F7CD00221C84FC8800F126F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F7CE70571C8A42E200789427 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		F7CE70601C8DC89A00789427 /* Fitbit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fitbit.swift; sourceTree = "<group>"; };
+		F7EE07B01C91EBC100E160D4 /* Friends.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Friends.swift; sourceTree = "<group>"; };
+		F7EE07B21C91EBFE00E160D4 /* FitbitAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FitbitAPI.swift; sourceTree = "<group>"; };
+		F7EE07B41C91EC7A00E160D4 /* Oauth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Oauth.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F7CD00101C84FC8800F126F5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F7BEC41E1C8E1BEF0018CDEA /* badges */ = {
+			isa = PBXGroup;
+			children = (
+				F7BEC4181C8E0B230018CDEA /* BadgesTableViewController.swift */,
+				F7BEC41C1C8E1BE70018CDEA /* badgesTableViewCell.swift */,
+			);
+			name = badges;
+			sourceTree = "<group>";
+		};
+		F7BEC41F1C8E1BF80018CDEA /* friends */ = {
+			isa = PBXGroup;
+			children = (
+				F7BEC4161C8E0B140018CDEA /* FriendsTableViewController.swift */,
+				F7C736421C8F5B9500CD4704 /* FriendsTableViewCell.swift */,
+			);
+			name = friends;
+			sourceTree = "<group>";
+		};
+		F7BEC4201C8E1C000018CDEA /* activities */ = {
+			isa = PBXGroup;
+			children = (
+				F7BEC41A1C8E0B500018CDEA /* ActivitesViewController.swift */,
+				F77B10BC1C9084F2007CB7C1 /* ActivityTableViewController.swift */,
+				F77B10BA1C9084E3007CB7C1 /* ActivityTableViewCell.swift */,
+			);
+			name = activities;
+			sourceTree = "<group>";
+		};
+		F7C736441C8F701A00CD4704 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F7C736451C8F702A00CD4704 /* defaultProfileFemale.gif */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		F7CD000A1C84FC8800F126F5 = {
+			isa = PBXGroup;
+			children = (
+				F7CD00151C84FC8800F126F5 /* myFitBitApp */,
+				F7CD00141C84FC8800F126F5 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F7CD00141C84FC8800F126F5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F7CD00131C84FC8800F126F5 /* myFitBitApp.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F7CD00151C84FC8800F126F5 /* myFitBitApp */ = {
+			isa = PBXGroup;
+			children = (
+				F7CD00161C84FC8800F126F5 /* AppDelegate.swift */,
+				F7CD00221C84FC8800F126F5 /* Info.plist */,
+				F7CD001A1C84FC8800F126F5 /* Main.storyboard */,
+				F7CD001F1C84FC8800F126F5 /* LaunchScreen.storyboard */,
+				F7CD001D1C84FC8800F126F5 /* Assets.xcassets */,
+				F7C736441C8F701A00CD4704 /* Resources */,
+				F7CE705D1C8DC86F00789427 /* Util */,
+				F7CE705A1C8A491400789427 /* Controllers */,
+				F7CE705B1C8A491900789427 /* Models */,
+				F7CE70591C8A490A00789427 /* Views */,
+			);
+			path = myFitBitApp;
+			sourceTree = "<group>";
+		};
+		F7CE70591C8A490A00789427 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		F7CE705A1C8A491400789427 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F7CE70571C8A42E200789427 /* HomeViewController.swift */,
+				F7CD00181C84FC8800F126F5 /* UserViewController.swift */,
+				F7BEC41F1C8E1BF80018CDEA /* friends */,
+				F7BEC41E1C8E1BEF0018CDEA /* badges */,
+				F7BEC4201C8E1C000018CDEA /* activities */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		F7CE705B1C8A491900789427 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F778998A1C923382005DA792 /* LifeTimeStats.swift */,
+				F73609F21C921CFF003DA222 /* Device.swift */,
+				F7EE07B01C91EBC100E160D4 /* Friends.swift */,
+				F73609EE1C920A29003DA222 /* User.swift */,
+				F77899881C923166005DA792 /* Achievements.swift */,
+				F77899841C922198005DA792 /* Achievement.swift */,
+				F73609F01C920E8B003DA222 /* Image.swift */,
+				F77899861C922A41005DA792 /* Color.swift */,
+				F792B5611C937FF400688880 /* Activity.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		F7CE705D1C8DC86F00789427 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				F7CE70601C8DC89A00789427 /* Fitbit.swift */,
+				F7EE07B21C91EBFE00E160D4 /* FitbitAPI.swift */,
+				F7EE07B41C91EC7A00E160D4 /* Oauth.swift */,
+				DE95EAF81C94C8050000C21C /* Storage.swift */,
+				F792B55F1C937F2900688880 /* Helper.swift */,
+				DE95EAFA1C94D4C80000C21C /* Communicator.swift */,
+			);
+			name = Util;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F7CD00121C84FC8800F126F5 /* myFitBitApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F7CD00251C84FC8800F126F5 /* Build configuration list for PBXNativeTarget "myFitBitApp" */;
+			buildPhases = (
+				F7CD000F1C84FC8800F126F5 /* Sources */,
+				F7CD00101C84FC8800F126F5 /* Frameworks */,
+				F7CD00111C84FC8800F126F5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = myFitBitApp;
+			productName = myFitBitApp;
+			productReference = F7CD00131C84FC8800F126F5 /* myFitBitApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F7CD000B1C84FC8800F126F5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = LC;
+				TargetAttributes = {
+					F7CD00121C84FC8800F126F5 = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
+				};
+			};
+			buildConfigurationList = F7CD000E1C84FC8800F126F5 /* Build configuration list for PBXProject "myFitBitApp" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F7CD000A1C84FC8800F126F5;
+			productRefGroup = F7CD00141C84FC8800F126F5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F7CD00121C84FC8800F126F5 /* myFitBitApp */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F7CD00111C84FC8800F126F5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F7C736461C8F702A00CD4704 /* defaultProfileFemale.gif in Resources */,
+				F7CD00211C84FC8800F126F5 /* LaunchScreen.storyboard in Resources */,
+				F7CD001E1C84FC8800F126F5 /* Assets.xcassets in Resources */,
+				F7CD001C1C84FC8800F126F5 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F7CD000F1C84FC8800F126F5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F7BEC4191C8E0B230018CDEA /* BadgesTableViewController.swift in Sources */,
+				F7CE70611C8DC89A00789427 /* Fitbit.swift in Sources */,
+				F7BEC41D1C8E1BE70018CDEA /* badgesTableViewCell.swift in Sources */,
+				F73609F31C921CFF003DA222 /* Device.swift in Sources */,
+				F7EE07B31C91EBFE00E160D4 /* FitbitAPI.swift in Sources */,
+				F73609EF1C920A29003DA222 /* User.swift in Sources */,
+				F792B5621C937FF400688880 /* Activity.swift in Sources */,
+				F7EE07B11C91EBC100E160D4 /* Friends.swift in Sources */,
+				F7C736431C8F5B9500CD4704 /* FriendsTableViewCell.swift in Sources */,
+				F778998B1C923382005DA792 /* LifeTimeStats.swift in Sources */,
+				F77B10BB1C9084E3007CB7C1 /* ActivityTableViewCell.swift in Sources */,
+				F77899891C923166005DA792 /* Achievements.swift in Sources */,
+				F7BEC41B1C8E0B500018CDEA /* ActivitesViewController.swift in Sources */,
+				F7BEC4171C8E0B140018CDEA /* FriendsTableViewController.swift in Sources */,
+				F77B10BD1C9084F2007CB7C1 /* ActivityTableViewController.swift in Sources */,
+				DE95EAFB1C94D4C80000C21C /* Communicator.swift in Sources */,
+				F73609F11C920E8B003DA222 /* Image.swift in Sources */,
+				F77899871C922A41005DA792 /* Color.swift in Sources */,
+				F7CD00191C84FC8800F126F5 /* UserViewController.swift in Sources */,
+				F7CD00171C84FC8800F126F5 /* AppDelegate.swift in Sources */,
+				F7CE70581C8A42E200789427 /* HomeViewController.swift in Sources */,
+				F792B5601C937F2900688880 /* Helper.swift in Sources */,
+				DE95EAF91C94C8050000C21C /* Storage.swift in Sources */,
+				F7EE07B51C91EC7A00E160D4 /* Oauth.swift in Sources */,
+				F77899851C922198005DA792 /* Achievement.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		F7CD001A1C84FC8800F126F5 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F7CD001B1C84FC8800F126F5 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		F7CD001F1C84FC8800F126F5 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F7CD00201C84FC8800F126F5 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F7CD00231C84FC8800F126F5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		F7CD00241C84FC8800F126F5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F7CD00261C84FC8800F126F5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = myFitBitApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = LC.myFitBitApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		F7CD00271C84FC8800F126F5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = myFitBitApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = LC.myFitBitApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F7CD000E1C84FC8800F126F5 /* Build configuration list for PBXProject "myFitBitApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F7CD00231C84FC8800F126F5 /* Debug */,
+				F7CD00241C84FC8800F126F5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F7CD00251C84FC8800F126F5 /* Build configuration list for PBXNativeTarget "myFitBitApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F7CD00261C84FC8800F126F5 /* Debug */,
+				F7CD00271C84FC8800F126F5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F7CD000B1C84FC8800F126F5 /* Project object */;
+}
