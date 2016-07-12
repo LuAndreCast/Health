@@ -1,0 +1,112 @@
+{
+	"id": "6c979904-b286-fad3-4b8c-ae00789051ed",
+	"name": "Jawbone copy",
+	"description": "",
+	"order": [
+		"6b3bffb1-2f3d-bef1-00b3-e3d783336869",
+		"0c40fe28-1d26-ba29-1d3e-50437bfa80b4",
+		"9ed00452-9d5e-764c-4fd3-69b711113f55"
+	],
+	"folders": [],
+	"timestamp": 1457032863216,
+	"owner": "360032",
+	"public": false,
+	"hasRequests": true,
+	"requests": [
+		{
+			"id": "0c40fe28-1d26-ba29-1d3e-50437bfa80b4",
+			"headers": "Authorization: UPDATE WITH BASIC 64 BIT ENCODING\n",
+			"url": "https://api.fitbit.com/oauth2/token",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "grant_type",
+					"value": "refresh_token",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "refresh_token",
+					"value": "daef94d6ed7d6d036bbc77e7c1fb01ac499d980678c34d43ec9b04cadb90fe93",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1465396275553,
+			"name": "Refresh Token",
+			"description": "",
+			"collectionId": "6c979904-b286-fad3-4b8c-ae00789051ed",
+			"responses": []
+		},
+		{
+			"id": "6b3bffb1-2f3d-bef1-00b3-e3d783336869",
+			"headers": "Authorization: UPDATE WITH BASIC 64 BIT ENCODING\n",
+			"url": "https://jawbone.com/auth/oauth2/token",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "grant_type",
+					"value": "authorization_code",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "code",
+					"value": "jF_LbmL3sgA_T6FfUQTu6J1xoRw-e_H0H8IxXD87snCSc5-fiPxYrjQ7b97G101kASfWbIWY51xp7CT9C2hu5vXgJbBeGENBqbKHdHLQYmK3BFnpMtk_v_1iHbrzUzvK8aEpsIodBknNWzhLq6VsNBOMapGyWdr_oqXYvdS6WU42ftOHJOxvI1U7DkcELlxzHB8HWUOc21Y",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "client_id",
+					"value": "UPDATE WITH YOUR CLIENT ID",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "client_secret",
+					"value": "UPDATE WITH YOUR SECRET KEY",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1465396345022,
+			"name": "Access Token",
+			"description": "",
+			"collectionId": "6c979904-b286-fad3-4b8c-ae00789051ed",
+			"responses": []
+		},
+		{
+			"id": "9ed00452-9d5e-764c-4fd3-69b711113f55",
+			"headers": "Authorization: UPDATE WITH BEARER 64 BIT ENCODING\n",
+			"url": "https://jawbone.com/nudge/api/v.1.1/users/@me",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "GET",
+			"data": [],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1465396296884,
+			"name": "User",
+			"description": "",
+			"collectionId": "6c979904-b286-fad3-4b8c-ae00789051ed",
+			"responses": []
+		}
+	]
+}
