@@ -13,7 +13,7 @@
 	<key>SCOPE</key>
 	<string>extended_read%20move_read</string>
 	<key>REDIRECT_URI</key>
-	<string>JawboneAuth://redirect</string>
+	<string>JawboneAuth://redirect</string>    
 	<key>SECRET_KEY</key>
 	<string>ENTER SECRET KEY HERE</string>
 	<key>CLIENT_ID</key>

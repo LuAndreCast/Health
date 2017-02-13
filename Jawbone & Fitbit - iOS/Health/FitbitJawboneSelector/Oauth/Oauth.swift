@@ -59,11 +59,11 @@ class Oauth
     //MARK: Url Code cleanup
     func Safari_urlCodeCleanUp(_ url:String, completionHandler:(_ codeRetrieved:Bool)->Void)
     {
-        if url.contains("health://?code=") && url.contains("#success")
+        if url.contains("health://?code=") && url.contains("#")
         {
             var cleanCode:String = url.replacingOccurrences(of: "health://?code=", with: "")
 
-            cleanCode = cleanCode.replacingOccurrences(of: "#success", with: "")
+            cleanCode = cleanCode.replacingOccurrences(of: "#_=_", with: "")
             
             self.code = cleanCode
             
@@ -335,6 +335,14 @@ class Oauth
     }//eom
 
     
+    func clearAuthData()
+    {
+        self.code = ""
+        self.accessToken = ""
+        self.refreshToken = ""
+        self.codeExpiration = ""
+    }
+    
     //MARK: - Debug
     func debug()
     {
@@ -346,10 +354,13 @@ class Oauth
         print("urlToken         \(urlToken)")
         print("urlAuth          \(urlAuth)")
         print("code             \(code)")
+        print("code Expiration  \(codeExpiration)")
+        //
         print("accessToken      \(accessToken)")
         print("refreshToken     \(refreshToken)")
         print("\n")
     }//eom
+    
     
     
 }//eoc

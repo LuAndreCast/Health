@@ -14,6 +14,8 @@ class MainViewController: UIViewController, SelectorResponder
     @IBOutlet weak var getStepsButton: UIButton!
     @IBOutlet weak var timeframeChooser: UISegmentedControl!
     
+    @IBOutlet weak var apiSelection: UISegmentedControl!
+    
     //models
     // instanciates a Selector class.
     let selectorModel:Selector = Selector.instance
@@ -35,20 +37,19 @@ class MainViewController: UIViewController, SelectorResponder
         
         let optionSelected = self.selectorModel.apiSelected
         
-        print("otside \(optionSelected)")
         switch optionSelected
         {
         case .fitbit:
-            self.timeframeChooser.selectedSegmentIndex = 1
-            self.timeframeChooser.sendActions(for: UIControlEvents.valueChanged)
+            self.apiSelection.selectedSegmentIndex = 1
+//            self.timeframeChooser.sendActions(for: UIControlEvents.valueChanged)
             break
         case .jawbone:
-            self.timeframeChooser.selectedSegmentIndex = 2
-            self.timeframeChooser.sendActions(for: UIControlEvents.valueChanged)
+            self.apiSelection.selectedSegmentIndex = 2
+//            self.timeframeChooser.sendActions(for: UIControlEvents.valueChanged)
             break
         case .none:
-            self.timeframeChooser.selectedSegmentIndex = 0
-            self.timeframeChooser.sendActions(for: UIControlEvents.valueChanged)
+            self.apiSelection.selectedSegmentIndex = 0
+//            self.timeframeChooser.sendActions(for: UIControlEvents.valueChanged)
             break
         }
     }//eom
@@ -118,14 +119,11 @@ class MainViewController: UIViewController, SelectorResponder
     */
     func initialCheckResponse(_ isReady: Bool)
     {
-        
-        // check NSUserDefaults for access token? 
+        // check NSUserDefaults for access token?
         // is access token expired?
-        
         if isReady == false
         {
             //get auth info
-            print("need to get auth info!!")
             self.launchJawboneWebView()
         }
         else
@@ -138,11 +136,12 @@ class MainViewController: UIViewController, SelectorResponder
     Param : Bool - Did the app recieve an authroizationCode back (Jawbone Only)?
 
     */
-    func finalCheckResponse(_ isReady: Bool)
-    {
+    func finalCheckResponse(_ isReady: Bool, _ error: Error?) {
         if isReady == false
         {
-            print("un-able to retrieve auth code")
+            let message = error?.localizedDescription ?? "un-able to retrieve auth code"
+            self.showMessage(title: "Authorization Result", message: message)
+            self.getStepsButton.isHidden = true
         }
         else
         {
@@ -193,5 +192,17 @@ class MainViewController: UIViewController, SelectorResponder
         self.selectorModel.updateAPISelection( apiSelected )
         self.selectorModel.startUpServices()
     }//eo-a
+    
+    //MARK: - Message
+    func showMessage(title:String, message:String)
+    {
+        let controller:UIAlertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        
+        let okAction:UIAlertAction = UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil)
+        
+        controller.addAction(okAction)
+        
+        self.present(controller, animated: true, completion: nil)
+    }//eom
     
 }//eoc

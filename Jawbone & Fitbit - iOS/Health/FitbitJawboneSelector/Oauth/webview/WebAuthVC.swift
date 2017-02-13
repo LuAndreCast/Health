@@ -26,6 +26,7 @@ class WebAuthVC: UIViewController, WKNavigationDelegate {
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        self.deleteCookies()
     }//eom
     
     override func viewDidAppear(_ animated: Bool)
@@ -84,13 +85,56 @@ class WebAuthVC: UIViewController, WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!)
     {
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
+        self.deleteCookies()
     }
     
     
-    //MARK: Memory
+    //MARK: - Memory
     override func didReceiveMemoryWarning()
     {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+    //MARK: - Cookies
+    private func deleteCookies()
+    {
+        //deleting cookies
+        if let requestURL = self.urlRequest
+        {
+            if let urlCookieToDelete:URL = requestURL.url
+            {
+                let storage = HTTPCookieStorage.shared
+                if let cookies:[HTTPCookie] = storage.cookies(for: urlCookieToDelete )
+                {
+                    for currCookie in cookies {
+                        storage.deleteCookie(currCookie)
+                    }//eofl
+                }
+            }
+        }
+        
+        //        if #available(iOS 9.0, *) {
+        //            let websiteDataTypes = NSSet(array: [WKWebsiteDataTypeDiskCache, WKWebsiteDataTypeMemoryCache])
+        //            let date = NSDate(timeIntervalSince1970: 0)
+        //            WKWebsiteDataStore.default().removeData(ofTypes: websiteDataTypes as! Set<String>, modifiedSince: date as Date, completionHandler:{
+        //                if verbose { print("webview cache cleared") }
+        //            })
+        //        }
+        //        else
+        //        {
+        //            var libraryPath = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.libraryDirectory, FileManager.SearchPathDomainMask.userDomainMask, false).first!
+        //            libraryPath += "/Cookies"
+        //
+        //            do {
+        //                try FileManager.default.removeItem(atPath: libraryPath)
+        //                if verbose { print("webview cache cleared") }
+        //            } catch {
+        //                print("error")
+        //            }
+        //            URLCache.shared.removeAllCachedResponses()
+        //        }
+    }//eom
+
 }

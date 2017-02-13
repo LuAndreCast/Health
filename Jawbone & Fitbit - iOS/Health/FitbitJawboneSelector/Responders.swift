@@ -25,6 +25,6 @@ protocol codeResponder
 protocol SelectorResponder
 {
      func initialCheckResponse( _ isReady:Bool)
-     func finalCheckResponse( _ isReady:Bool)
+    func finalCheckResponse( _ isReady:Bool, _ error:Error?)
 }
 

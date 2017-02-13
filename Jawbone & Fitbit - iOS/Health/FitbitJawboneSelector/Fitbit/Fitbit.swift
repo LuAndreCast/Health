@@ -214,7 +214,7 @@ class Fitbit: Oauth, codeResponder
                         if taskCompleted == true
                         {
                             OperationQueue.main.addOperation({ () -> Void in
-                                    self.delegate?.finalCheckResponse(true)
+                                    self.delegate?.finalCheckResponse(true, nil)
                                 })
                         }
                         else
@@ -222,7 +222,7 @@ class Fitbit: Oauth, codeResponder
                             print("error: \(error?.localizedDescription)")
                             
                             OperationQueue.main.addOperation({ () -> Void in
-                                self.delegate?.finalCheckResponse(false)
+                                self.delegate?.finalCheckResponse(false, error)
                             })
                         }
                 })
@@ -230,7 +230,7 @@ class Fitbit: Oauth, codeResponder
             else
             {
                 OperationQueue.main.addOperation({ () -> Void in
-                    self.delegate?.finalCheckResponse(false)
+                    self.delegate?.finalCheckResponse(false, nil)
                 })
             }
         }
@@ -258,5 +258,9 @@ class Fitbit: Oauth, codeResponder
         return parameters
     }//eom
 
+    func signout()
+    {
+        self.clearAuthData()
+    }
     
 }//eoc

@@ -70,7 +70,6 @@ class Jawbone:Oauth, codeResponder
             self.urlUser = userUrl
         }
         
-        
         // access Credentials
         let defaults = UserDefaults.standard
         do {
@@ -99,7 +98,6 @@ class Jawbone:Oauth, codeResponder
         
         self.debug()
     }//eom
-    
     
     //MARK: - Checks
     func systemCheck( _ completion: @escaping (_ allSystemGo:Bool, _ error: NSError? ) -> Void)
@@ -136,12 +134,9 @@ class Jawbone:Oauth, codeResponder
         }
     }//eom
     
-    
-    
-    
-    
     //MARK: - Steps
-    func getUserSteps(_ duration:stepsTimeStart, completion: @escaping (_ steps:[Step]?, _ error: NSError? ) -> Void)
+    func getUserSteps(_ duration:stepsTimeStart,
+                      completion: @escaping (_ steps:[Step]?, _ error: NSError? ) -> Void)
     {
         var timeStart:Int = 0
         
@@ -161,8 +156,20 @@ class Jawbone:Oauth, codeResponder
             break
         }
         
-        let timeStartString = DateFormatter.dateRewinder(timeStart)
-        let stepBaseURL  = (self.urlSteps) + "start_time=\(timeStartString)"
+        let timeStartString:String = dateFormatter.dateRewinder(timeStart)
+        let epoch_startDate:TimeInterval = dateFormatter.datestringToEpoch(dateString: timeStartString)
+         let epoch_endDate:TimeInterval = dateFormatter.todayDateInEpoch()
+        
+        let startTime:String = String(Int(epoch_startDate))
+        let endTime:String = String(Int(epoch_endDate))
+        
+        let stepBaseURL  = (self.urlSteps) + "start_time=\(startTime)" + "&end_time=\(endTime)&limit=365"
+        
+//        print("timeStart: ",timeStart)
+//        print("timeStartString: ",timeStartString)
+//        print("[epochTime] startTime: ",startTime)
+//        print("[epochTime] endTime: ",endTime)
+//        print("stepBaseURL: ",stepBaseURL)
         
         self.getUserData(stepBaseURL, completion:
             { (results, error) in
@@ -176,7 +183,8 @@ class Jawbone:Oauth, codeResponder
                 {
                     do
                     {
-                        let steps = try Parser.jawbone_parseSteps(results)
+                        let steps:[Step] = try Parser.jawbone_parseSteps(results)
+                        
                         completion(steps, nil)
                     }
                     catch
@@ -196,7 +204,6 @@ class Jawbone:Oauth, codeResponder
             
             if codeRetrieved == true
             {
-                print("\n code: \(self.code) \n")
                 //obtaining access token
                 let accessTokenBody:NSMutableDictionary = self.createAccessTokenBody()
                 self.getAccessToken(accessTokenBody, completion:
@@ -206,7 +213,7 @@ class Jawbone:Oauth, codeResponder
                         {
                             
                             OperationQueue.main.addOperation({ () -> Void in
-                                self.delegate?.finalCheckResponse(true)
+                                self.delegate?.finalCheckResponse(true, nil)
                             })
                         }
                         else
@@ -214,7 +221,7 @@ class Jawbone:Oauth, codeResponder
                             print("error: \(error?.localizedDescription)")
                             
                             OperationQueue.main.addOperation({ () -> Void in
-                                self.delegate?.finalCheckResponse(false)
+                                self.delegate?.finalCheckResponse(false, error)
                             })
                         }
                 })
@@ -222,20 +229,11 @@ class Jawbone:Oauth, codeResponder
             else
             {
                 OperationQueue.main.addOperation({ () -> Void in
-                    self.delegate?.finalCheckResponse(false)
+                    self.delegate?.finalCheckResponse(false, nil)
                 })
             }
         }
     }//eom
-    
-    
-    //MARK: - ParsingJSON
-    fileprivate func parseJSON() throws {
-        //        let jsonData =
-        
-        
-        
-    }
     
     //MARK: - Oauth Tokens
     fileprivate func createAccessTokenBody() -> NSMutableDictionary
@@ -260,5 +258,8 @@ class Jawbone:Oauth, codeResponder
         return parameters
     }//eom
     
-    
+    func signout()
+    {
+        self.clearAuthData()
+    }
 }//eoc

@@ -47,7 +47,7 @@ class Selector
             self.apiSelected = api(rawValue: 0)!
         }
         
-        print("apiSelected : \(apiSelected)")
+        print("apiSelected : \(apiSelected) \n\n")
     }//eom
     
     /**
@@ -72,6 +72,9 @@ class Selector
             case .none:
                 UserDefaults.standard.removeObject(forKey: "Jawbone")
                 UserDefaults.standard.removeObject(forKey: "Fitbit")
+                
+                fitbitModel.signout()
+                jawboneModel.signout()
             break
         }
         

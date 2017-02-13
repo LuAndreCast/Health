@@ -28,6 +28,8 @@ class Parser
             throw ParsingError.jsonParsing
         }
         
+        print("list: ", list)
+        
         guard let dataList:NSDictionary = list .object(forKey: "data") as? NSDictionary else {
             throw ParsingError.missingData
         }
@@ -36,6 +38,8 @@ class Parser
         {
             throw ParsingError.noData
         }
+        
+        print("total count: ",items.count)
         
         for item in items
         {
@@ -59,6 +63,8 @@ class Parser
         guard let list:NSDictionary = data as? NSDictionary else {
             throw ParsingError.jsonParsing
         }
+        
+        print("list: ", list)
         
         guard let dataList:NSArray = list .object(forKey: "activities-steps") as? NSArray else {
             throw ParsingError.missingData

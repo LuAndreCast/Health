@@ -11,7 +11,7 @@ import Foundation
 
 class DateFormatter
 {
-    let currentDate = Date()
+    private let currentDate = Date()
     var dateFormatter = Foundation.DateFormatter()
     
     /*
@@ -43,7 +43,7 @@ class DateFormatter
      
      There must be a dateFormatter object initialized in the class called "dateFormatter" as well as a variable called "currentDate" of type NSDate.
      */
-    class func dateRewinder (_ amountToRewind: Int) -> String {
+    func dateRewinder (_ amountToRewind: Int) -> String {
         let dateFormatter = Foundation.DateFormatter()
         let currentDate = Date()
         // calculate the date based on rewind...
@@ -56,6 +56,34 @@ class DateFormatter
         return dateInStringFormatted
     }
     
+    func datestringToEpoch( dateString:String)-> TimeInterval
+    {
+        let dateFormatter = Foundation.DateFormatter()
+        dateFormatter.dateFormat = "yyyyMMdd"
+        if let date:Date = dateFormatter.date(from: dateString)
+        {
+            print("*** date: ", dateFormatter.string(from: date))
+            
+            let epochTime:TimeInterval = date.timeIntervalSince1970
+            return epochTime
+        }
+        
+        return Date.timeIntervalBetween1970AndReferenceDate
+    }
+    
+    func todayDateInEpoch()-> TimeInterval
+    {
+        return currentDate.timeIntervalSince1970
+    }
+    
+    func todayDateInString()-> String
+    {
+        let dateFormatter = Foundation.DateFormatter()
+        dateFormatter.dateFormat = "yyyyMMdd"
+        
+        let dateString:String = dateFormatter.string(from: currentDate)
+        return dateString
+    }
     
     func isCodeExpired(_ expiration: String)->Bool
     {
