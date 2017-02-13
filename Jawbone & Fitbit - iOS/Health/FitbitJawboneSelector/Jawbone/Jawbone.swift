@@ -12,8 +12,8 @@ class Jawbone:Oauth, codeResponder
 {
     static let instance:Jawbone = Jawbone()
     
-    private var urlSteps:String = ""
-    private var urlUser:String  = ""
+    fileprivate var urlSteps:String = ""
+    fileprivate var urlUser:String  = ""
     
     //models
     let dateFormatter:DateFormatter = DateFormatter()
@@ -33,15 +33,15 @@ class Jawbone:Oauth, codeResponder
     func getDataFromDevice()
     {
         //PLIST
-        guard let pathOfFile:String = NSBundle .mainBundle() .pathForResource("Jawbone", ofType: "plist") else { return }
+        guard let pathOfFile:String = Bundle.main .path(forResource: "Jawbone", ofType: "plist") else { return }
         
         guard let resourceDict:NSDictionary = NSDictionary(contentsOfFile: pathOfFile) else { return }
         
         //Oauth var's
-        if let clientID:String = resourceDict .objectForKey("CLIENT_ID") as? String,
-            let secret:String = resourceDict .objectForKey("SECRET_KEY") as? String,
-            let redirectURI:String = resourceDict .objectForKey("REDIRECT_URI") as? String,
-            let scope:String = resourceDict .objectForKey("SCOPE") as? String
+        if let clientID:String = resourceDict .object(forKey: "CLIENT_ID") as? String,
+            let secret:String = resourceDict .object(forKey: "SECRET_KEY") as? String,
+            let redirectURI:String = resourceDict .object(forKey: "REDIRECT_URI") as? String,
+            let scope:String = resourceDict .object(forKey: "SCOPE") as? String
         {
             self.clientID = clientID
             self.secretKey = secret
@@ -49,54 +49,52 @@ class Jawbone:Oauth, codeResponder
             self.scope = scope
         }
         
-        if let authUrl:String = resourceDict .objectForKey("URL_AUTH") as? String
+        if let authUrl:String = resourceDict .object(forKey: "URL_AUTH") as? String
         {
             self.urlAuth = authUrl
         }
         
         
-        if let tokenUrl:String = resourceDict .objectForKey("URL_TOKEN") as? String
+        if let tokenUrl:String = resourceDict .object(forKey: "URL_TOKEN") as? String
         {
             self.urlToken = tokenUrl
         }
         
-        if let stepsUrl:String = resourceDict .objectForKey("URL_STEPS") as? String
+        if let stepsUrl:String = resourceDict .object(forKey: "URL_STEPS") as? String
         {
             self.urlSteps = stepsUrl
         }
         
-        if let userUrl:String = resourceDict .objectForKey("URL_USER") as? String
+        if let userUrl:String = resourceDict .object(forKey: "URL_USER") as? String
         {
             self.urlUser = userUrl
         }
         
         
         // access Credentials
-        let defaults = NSUserDefaults.standardUserDefaults()
+        let defaults = UserDefaults.standard
         do {
-            let userData = try defaults.objectForKey(self.clientID) as? NSData
+            let userData = defaults.object(forKey: self.clientID) as? Data
             if (userData != nil) {
-                do {
-                    let jsonDictionary = try NSJSONSerialization.JSONObjectWithData(userData!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
-                    //access token
-                    if let accessTokenRetrieved:String = jsonDictionary.objectForKey("access_token") as? String
-                    {
-                        self.accessToken = accessTokenRetrieved
-                    }
-                    
-                    if let refreshTokenRetrieved:String = jsonDictionary.objectForKey("refresh_token") as? String
-                    {
-                        self.refreshToken = refreshTokenRetrieved
-                    }
-                    
-                    if let codeExpirationRetrieved:String = jsonDictionary.objectForKey("expiration_date") as? String
-                    {
-                        self.codeExpiration = codeExpirationRetrieved
-                    }
-                } catch {
-                    print (error)
+                let jsonDictionary = try JSONSerialization.jsonObject(with: userData!, options: JSONSerialization.ReadingOptions.mutableContainers) as! NSDictionary
+                //access token
+                if let accessTokenRetrieved:String = jsonDictionary.object(forKey: "access_token") as? String
+                {
+                    self.accessToken = accessTokenRetrieved
+                }
+                
+                if let refreshTokenRetrieved:String = jsonDictionary.object(forKey: "refresh_token") as? String
+                {
+                    self.refreshToken = refreshTokenRetrieved
+                }
+                
+                if let codeExpirationRetrieved:String = jsonDictionary.object(forKey: "expiration_date") as? String
+                {
+                    self.codeExpiration = codeExpirationRetrieved
                 }
             }
+        } catch {
+            print (error)
         }
         
         self.debug()
@@ -104,7 +102,7 @@ class Jawbone:Oauth, codeResponder
     
     
     //MARK: - Checks
-    func systemCheck( completion: (allSystemGo:Bool, error: NSError? ) -> Void)
+    func systemCheck( _ completion: @escaping (_ allSystemGo:Bool, _ error: NSError? ) -> Void)
     {
         //we have a token
         if self.accessToken.characters.count > 0
@@ -118,23 +116,23 @@ class Jawbone:Oauth, codeResponder
                     { (taskCompleted, error) in
                         if taskCompleted == true
                         {
-                            completion(allSystemGo: true, error: nil)
+                            completion(true, nil)
                         }
                         else
                         {
-                            completion(allSystemGo: false, error: error)
+                            completion(false, error)
                         }
                 })
             }
             //access codes are Good
             else
             {
-                completion(allSystemGo: true, error: nil)
+                completion(true, nil)
             }
         }
         else
         {
-            completion (allSystemGo: false, error: nil)
+            completion (false, nil)
         }
     }//eom
     
@@ -143,7 +141,7 @@ class Jawbone:Oauth, codeResponder
     
     
     //MARK: - Steps
-    func getUserSteps(duration:stepsTimeStart, completion: (steps:[Step]?, error: NSError? ) -> Void)
+    func getUserSteps(_ duration:stepsTimeStart, completion: @escaping (_ steps:[Step]?, _ error: NSError? ) -> Void)
     {
         var timeStart:Int = 0
         
@@ -164,7 +162,7 @@ class Jawbone:Oauth, codeResponder
         }
         
         let timeStartString = DateFormatter.dateRewinder(timeStart)
-        let stepBaseURL  = (self.urlSteps) .stringByAppendingString("start_time=\(timeStartString)")
+        let stepBaseURL  = (self.urlSteps) + "start_time=\(timeStartString)"
         
         self.getUserData(stepBaseURL, completion:
             { (results, error) in
@@ -172,25 +170,25 @@ class Jawbone:Oauth, codeResponder
                 {
                     print("error: \(error?.localizedDescription)")
                     
-                    completion(steps: nil, error: error)
+                    completion(nil, error)
                 }
                 else
                 {
                     do
                     {
                         let steps = try Parser.jawbone_parseSteps(results)
-                        completion(steps: steps, error: nil)
+                        completion(steps, nil)
                     }
                     catch
                     {
-                        completion(steps: nil, error: nil)
+                        completion(nil, nil)
                     }
                 }//some data
         })
     }//eom
     
     //MARK: - Oauth Auth Code Received
-    func receiveAuthCode(dirtyCode: String)
+    func receiveAuthCode(_ dirtyCode: String)
     {
         //cleaning dirty code
         self.Webview_urlCodeCleanUp(dirtyCode)
@@ -207,7 +205,7 @@ class Jawbone:Oauth, codeResponder
                         if taskCompleted == true
                         {
                             
-                            NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                            OperationQueue.main.addOperation({ () -> Void in
                                 self.delegate?.finalCheckResponse(true)
                             })
                         }
@@ -215,7 +213,7 @@ class Jawbone:Oauth, codeResponder
                         {
                             print("error: \(error?.localizedDescription)")
                             
-                            NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                            OperationQueue.main.addOperation({ () -> Void in
                                 self.delegate?.finalCheckResponse(false)
                             })
                         }
@@ -223,7 +221,7 @@ class Jawbone:Oauth, codeResponder
             }
             else
             {
-                NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                OperationQueue.main.addOperation({ () -> Void in
                     self.delegate?.finalCheckResponse(false)
                 })
             }
@@ -232,7 +230,7 @@ class Jawbone:Oauth, codeResponder
     
     
     //MARK: - ParsingJSON
-    private func parseJSON() throws {
+    fileprivate func parseJSON() throws {
         //        let jsonData =
         
         
@@ -240,7 +238,7 @@ class Jawbone:Oauth, codeResponder
     }
     
     //MARK: - Oauth Tokens
-    private func createAccessTokenBody() -> NSMutableDictionary
+    fileprivate func createAccessTokenBody() -> NSMutableDictionary
     {
         let parameters:NSMutableDictionary  = NSMutableDictionary()
         parameters["grant_type"]    = "authorization_code"
@@ -251,7 +249,7 @@ class Jawbone:Oauth, codeResponder
         return parameters
     }//eom
     
-    private func createRefreshTokenBody() -> NSMutableDictionary
+    fileprivate func createRefreshTokenBody() -> NSMutableDictionary
     {
         let parameters:NSMutableDictionary  = NSMutableDictionary()
         parameters["client_id"]     = self.clientID

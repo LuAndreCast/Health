@@ -9,14 +9,14 @@
 import Foundation
 
 
-extension NSUserDefaults
+extension UserDefaults
 {
 
     //MARK: - API selection
     func isJawboneSelected()->Bool
     {
-        let defaults = NSUserDefaults.standardUserDefaults()
-        if let isJawboneSaved:Bool = defaults.valueForKey("Jawbone") as? Bool
+        let defaults = UserDefaults.standard
+        if let isJawboneSaved:Bool = defaults.value(forKey: "Jawbone") as? Bool
         {
             if isJawboneSaved
             {
@@ -29,8 +29,8 @@ extension NSUserDefaults
     
     func isFitbitSelected()->Bool
     {
-        let defaults = NSUserDefaults.standardUserDefaults()
-        if let isFitbitSaved:Bool = defaults.valueForKey("Fitbit") as? Bool
+        let defaults = UserDefaults.standard
+        if let isFitbitSaved:Bool = defaults.value(forKey: "Fitbit") as? Bool
         {
             if isFitbitSaved
             {

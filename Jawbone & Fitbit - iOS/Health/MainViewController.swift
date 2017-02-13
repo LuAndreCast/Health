@@ -40,15 +40,15 @@ class MainViewController: UIViewController, SelectorResponder
         {
         case .fitbit:
             self.timeframeChooser.selectedSegmentIndex = 1
-            self.timeframeChooser.sendActionsForControlEvents(UIControlEvents.ValueChanged)
+            self.timeframeChooser.sendActions(for: UIControlEvents.valueChanged)
             break
         case .jawbone:
             self.timeframeChooser.selectedSegmentIndex = 2
-            self.timeframeChooser.sendActionsForControlEvents(UIControlEvents.ValueChanged)
+            self.timeframeChooser.sendActions(for: UIControlEvents.valueChanged)
             break
         case .none:
             self.timeframeChooser.selectedSegmentIndex = 0
-            self.timeframeChooser.sendActionsForControlEvents(UIControlEvents.ValueChanged)
+            self.timeframeChooser.sendActions(for: UIControlEvents.valueChanged)
             break
         }
     }//eom
@@ -56,7 +56,7 @@ class MainViewController: UIViewController, SelectorResponder
         
     
     //MARK: -  Actions
-    @IBAction func getSteps(sender:AnyObject)
+    @IBAction func getSteps(_ sender:AnyObject)
     {
         var stepsDesired:stepsTimeStart = stepsTimeStart.thirty
         
@@ -98,9 +98,9 @@ class MainViewController: UIViewController, SelectorResponder
     }//eo-a
     
     
-    func showSteps(steps:[Step])
+    func showSteps(_ steps:[Step])
     {
-        if let vc:StepsTableViewController = self.storyboard?.instantiateViewControllerWithIdentifier("stepTVC") as? StepsTableViewController
+        if let vc:StepsTableViewController = self.storyboard?.instantiateViewController(withIdentifier: "stepTVC") as? StepsTableViewController
         {
             vc.steps = steps
             
@@ -116,7 +116,7 @@ class MainViewController: UIViewController, SelectorResponder
     /**
     Param: Bool - Does the App have a current accessToken in NSUserDefaults?
     */
-    func initialCheckResponse(isReady: Bool)
+    func initialCheckResponse(_ isReady: Bool)
     {
         
         // check NSUserDefaults for access token? 
@@ -130,7 +130,7 @@ class MainViewController: UIViewController, SelectorResponder
         }
         else
         {
-            self.getStepsButton.hidden = false
+            self.getStepsButton.isHidden = false
         }
     }//eom
     
@@ -138,7 +138,7 @@ class MainViewController: UIViewController, SelectorResponder
     Param : Bool - Did the app recieve an authroizationCode back (Jawbone Only)?
 
     */
-    func finalCheckResponse(isReady: Bool)
+    func finalCheckResponse(_ isReady: Bool)
     {
         if isReady == false
         {
@@ -146,7 +146,7 @@ class MainViewController: UIViewController, SelectorResponder
         }
         else
         {
-            self.getStepsButton.hidden = false
+            self.getStepsButton.isHidden = false
         }
     }//eom
     
@@ -171,13 +171,13 @@ class MainViewController: UIViewController, SelectorResponder
         let webViewController = WebAuthVC (nibName: "WebAuthVC", bundle: nil)
         webViewController.urlRequest = urlRequest
         
-        self.presentViewController(webViewController, animated: true, completion: nil)
+        self.present(webViewController, animated: true, completion: nil)
     }
     
     //MARK: Temp
-    @IBAction func apiSelectorValueChanged(sender: UISegmentedControl)
+    @IBAction func apiSelectorValueChanged(_ sender: UISegmentedControl)
     {
-        self.getStepsButton.hidden = true
+        self.getStepsButton.isHidden = true
         
         let tag = sender.selectedSegmentIndex
         var apiSelected = api(rawValue: 0)!

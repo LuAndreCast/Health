@@ -11,8 +11,8 @@ import Foundation
 
 class DateFormatter
 {
-    let currentDate = NSDate()
-    var dateFormatter = NSDateFormatter()
+    let currentDate = Date()
+    var dateFormatter = Foundation.DateFormatter()
     
     /*
      ** Parameter intDate Int returned from UP API indicating the date the steps were recorded on.
@@ -22,17 +22,17 @@ class DateFormatter
      
      There must be a dateFormatter object initialized in the class called "dateFormatter" as well as a variable called "currentDate" of type NSDate.
      */
-    class func intToDateString (intDate : Int) -> String {
+    class func intToDateString (_ intDate : Int) -> String {
         // convert int to String
         let dateString : String = String (intDate)
-        let dateFormatter = NSDateFormatter()
+        let dateFormatter = Foundation.DateFormatter()
         dateFormatter.dateFormat = "yyyyMMdd"
         
-        let d = dateFormatter.dateFromString(dateString)!
+        let d = dateFormatter.date(from: dateString)!
         
         dateFormatter.dateFormat = "dd-MM-YYYY"
         
-        let stringDate = dateFormatter.stringFromDate(d)
+        let stringDate = dateFormatter.string(from: d)
         return stringDate
     }
     
@@ -43,27 +43,27 @@ class DateFormatter
      
      There must be a dateFormatter object initialized in the class called "dateFormatter" as well as a variable called "currentDate" of type NSDate.
      */
-    class func dateRewinder (amountToRewind: Int) -> String {
-        let dateFormatter = NSDateFormatter()
-        let currentDate = NSDate()
+    class func dateRewinder (_ amountToRewind: Int) -> String {
+        let dateFormatter = Foundation.DateFormatter()
+        let currentDate = Date()
         // calculate the date based on rewind...
-        let calculatedDate = NSCalendar.currentCalendar().dateByAddingUnit(NSCalendarUnit.Day, value: amountToRewind, toDate: currentDate, options: NSCalendarOptions.init(rawValue: 0))
+        let calculatedDate = (Calendar.current as NSCalendar).date(byAdding: NSCalendar.Unit.day, value: amountToRewind, to: currentDate, options: NSCalendar.Options.init(rawValue: 0))
         
         // convert NSDate to string
         dateFormatter.dateFormat = "yyyyMMdd"
-        let dateInStringFormatted = dateFormatter.stringFromDate(calculatedDate!)
+        let dateInStringFormatted = dateFormatter.string(from: calculatedDate!)
         
         return dateInStringFormatted
     }
     
     
-    func isCodeExpired(expiration: String)->Bool
+    func isCodeExpired(_ expiration: String)->Bool
     {
-        let dateFormatter = NSDateFormatter()
-        let currentDate = NSDate()
+        let dateFormatter = Foundation.DateFormatter()
+        let currentDate = Date()
         dateFormatter.dateFormat = "yyyyMMdd HH:mm:ss"
         
-        if let dateFromString = dateFormatter.dateFromString(expiration)
+        if let dateFromString = dateFormatter.date(from: expiration)
         {
             return currentDate.isGreaterThanDate(dateFromString)
         }
@@ -79,16 +79,16 @@ class DateFormatter
      
      There must be a dateFormatter object initialized in the class called "dateFormatter" as well as a variable called "currentDate" of type NSDate.
      */
-    class func addTimeToDateString(theTimeAdded: String) -> String
+    class func addTimeToDateString(_ theTimeAdded: String) -> String
     {
         let theSeconds : Int = Int(theTimeAdded)!
-        let currentDate = NSDate()
-        let calendar = NSCalendar.currentCalendar()
-        let date = calendar.dateByAddingUnit(.Second, value: theSeconds, toDate: currentDate, options: [])
+        let currentDate = Date()
+        let calendar = Calendar.current
+        let date = (calendar as NSCalendar).date(byAdding: .second, value: theSeconds, to: currentDate, options: [])
         
-        let dateFormatter = NSDateFormatter()
+        let dateFormatter = Foundation.DateFormatter()
         dateFormatter.dateFormat = "yyyyMMdd HH:mm:ss"
-        let dateInStringFormatted = dateFormatter.stringFromDate(date!)
+        let dateInStringFormatted = dateFormatter.string(from: date!)
         
         return dateInStringFormatted
     }

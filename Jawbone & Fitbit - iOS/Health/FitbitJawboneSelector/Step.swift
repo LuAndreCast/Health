@@ -10,10 +10,10 @@ import Foundation
 
 class Step
 {
-    private var _ID:Int?
-    private var _date:Int
-    private var _dateString:String
-    private var _steps:String
+    fileprivate var _ID:Int?
+    fileprivate var _date:Int
+    fileprivate var _dateString:String
+    fileprivate var _steps:String
 
     var dateInt:Int
         {

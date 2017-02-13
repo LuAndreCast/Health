@@ -11,30 +11,30 @@ import Foundation
 class Parser
 {
     
-    enum ParsingError: ErrorType {
+    enum ParsingError: Error {
 //        case MissingJson
 //        case JsonParsingError
-        case JsonParsing
-        case NoData
-        case MissingData
+        case jsonParsing
+        case noData
+        case missingData
     }
     
     //MARK: - Jawbone Step Parser
-    class func jawbone_parseSteps (data: AnyObject?) throws -> [Step]
+    class func jawbone_parseSteps (_ data: AnyObject?) throws -> [Step]
     {
         var moveArray =  [Step]()
         
         guard let list:NSDictionary = data as? NSDictionary else {
-            throw ParsingError.JsonParsing
+            throw ParsingError.jsonParsing
         }
         
-        guard let dataList:NSDictionary = list .objectForKey("data") as? NSDictionary else {
-            throw ParsingError.MissingData
+        guard let dataList:NSDictionary = list .object(forKey: "data") as? NSDictionary else {
+            throw ParsingError.missingData
         }
         
         guard let items = dataList["items"] as? [[String:AnyObject]] else
         {
-            throw ParsingError.NoData
+            throw ParsingError.noData
         }
         
         for item in items
@@ -52,16 +52,16 @@ class Parser
 
     
     //MARK: - Fitbit Step Parser
-    class func fitbit_parseSteps (data: AnyObject?) throws -> [Step]
+    class func fitbit_parseSteps (_ data: AnyObject?) throws -> [Step]
     {
         var moveArray =  [Step]()
         
         guard let list:NSDictionary = data as? NSDictionary else {
-            throw ParsingError.JsonParsing
+            throw ParsingError.jsonParsing
         }
         
-        guard let dataList:NSArray = list .objectForKey("activities-steps") as? NSArray else {
-            throw ParsingError.MissingData
+        guard let dataList:NSArray = list .object(forKey: "activities-steps") as? NSArray else {
+            throw ParsingError.missingData
         }
         
         

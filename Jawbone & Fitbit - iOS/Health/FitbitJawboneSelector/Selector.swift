@@ -32,13 +32,13 @@ class Selector
     Method to update the property in the Selector class "apiSelected" which decides which track the OAuth process will 
     use to obtain an access Key. Fitbit or Jawbone.  This is applied prior to checking for a current accessToken.
     */
-    private func getAPISelectionsFromDevice()
+    fileprivate func getAPISelectionsFromDevice()
     {
-        if NSUserDefaults.standardUserDefaults().isFitbitSelected() == true
+        if UserDefaults.standard.isFitbitSelected() == true
         {
             self.apiSelected = api(rawValue: 1)!
         }
-        else if NSUserDefaults.standardUserDefaults().isJawboneSelected() == true
+        else if UserDefaults.standard.isJawboneSelected() == true
         {
             self.apiSelected = api(rawValue: 2)!
         }
@@ -53,25 +53,25 @@ class Selector
     /**
     Method to take in selection from segmented controller and apply to VC property of the current VC.
     */
-    func updateAPISelection(options:api)
+    func updateAPISelection(_ options:api)
     {
         self.apiSelected = options
         
         switch options
         {
             case .fitbit:
-                NSUserDefaults.standardUserDefaults().setBool(false, forKey: "Jawbone")
-                NSUserDefaults.standardUserDefaults().setBool(true, forKey: "Fitbit")
+                UserDefaults.standard.set(false, forKey: "Jawbone")
+                UserDefaults.standard.set(true, forKey: "Fitbit")
                 //
             break
             case .jawbone:
-                NSUserDefaults.standardUserDefaults().setBool(true, forKey: "Jawbone")
-                NSUserDefaults.standardUserDefaults().setBool(false, forKey: "Fitbit")
+                UserDefaults.standard.set(true, forKey: "Jawbone")
+                UserDefaults.standard.set(false, forKey: "Fitbit")
                 //
             break
             case .none:
-                NSUserDefaults.standardUserDefaults().removeObjectForKey("Jawbone")
-                NSUserDefaults.standardUserDefaults().removeObjectForKey("Fitbit")
+                UserDefaults.standard.removeObject(forKey: "Jawbone")
+                UserDefaults.standard.removeObject(forKey: "Fitbit")
             break
         }
         
@@ -127,7 +127,7 @@ class Selector
     }//eom
     
     //MARK: - Steps
-    func getSteps(timeStart:stepsTimeStart, completion: (steps:[Step]?, error: NSError? ) -> Void)
+    func getSteps(_ timeStart:stepsTimeStart, completion: @escaping (_ steps:[Step]?, _ error: NSError? ) -> Void)
     {
         switch(apiSelected.rawValue)
         {
@@ -140,15 +140,15 @@ class Selector
                         //getting steps
                         self.jawboneModel.getUserSteps(timeStart, completion:
                             { (steps, error) -> Void in
-                                NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-                                    completion(steps: steps, error: nil)
+                                OperationQueue.main.addOperation({ () -> Void in
+                                    completion(steps, nil)
                                 })
                         })
                     }
                     else
                     {
-                        NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-                           completion(steps: nil, error: error)
+                        OperationQueue.main.addOperation({ () -> Void in
+                           completion(nil, error)
                         })
                     }
                 })
@@ -162,22 +162,22 @@ class Selector
                         //getting steps
                         self.fitbitModel.getUserSteps(timeStart, completion:
                         { (steps, error) -> Void in
-                            NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-                                completion(steps: steps, error: nil)
+                            OperationQueue.main.addOperation({ () -> Void in
+                                completion(steps, nil)
                             })
                         })
                     }
                     else
                     {
-                        NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-                            completion(steps: nil, error: error)
+                        OperationQueue.main.addOperation({ () -> Void in
+                            completion(nil, error)
                         })
                     }
                 })
                 break
             case 0:
-                NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-                    completion(steps: nil, error: noneOptionSelected)
+                OperationQueue.main.addOperation({ () -> Void in
+                    completion(nil, noneOptionSelected)
                 })
                 break
             default:

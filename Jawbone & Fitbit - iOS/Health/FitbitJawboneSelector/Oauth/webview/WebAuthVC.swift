@@ -19,7 +19,7 @@ class WebAuthVC: UIViewController, WKNavigationDelegate {
     var delegate:codeResponder?
     
     //Incoming
-    var urlRequest:NSURLRequest?
+    var urlRequest:URLRequest?
     var codeToSave:String = ""
     
     //MARK: View Loading
@@ -28,62 +28,62 @@ class WebAuthVC: UIViewController, WKNavigationDelegate {
         super.viewDidLoad()
     }//eom
     
-    override func viewDidAppear(animated: Bool)
+    override func viewDidAppear(_ animated: Bool)
     {
         let viewFrame = self.windowView.frame
         let webView = WKWebView(frame: viewFrame, configuration: WKWebViewConfiguration())
         webView.frame = self.windowView.frame
         webView.navigationDelegate = self
         self.view.addSubview(webView as WKWebView)
-        webView.loadRequest(self.urlRequest!)
+        webView.load(self.urlRequest!)
     }
     
-    @IBAction func cancelPressed(sender: AnyObject)
+    @IBAction func cancelPressed(_ sender: AnyObject)
     {
-        self.dismissViewControllerAnimated(true, completion: {})
+        self.dismiss(animated: true, completion: {})
     }
     //MARK: - UIWEBVIEW DELEGATE
     
-    func webView(webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!)
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!)
     {
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
     }
     
-    func webView(webView: UIWebView, didFailLoadWithError error: NSError?)
+    func webView(_ webView: UIWebView, didFailLoadWithError error: NSError?)
     {
         print("Webview fail with error \(error)");
     }
     
-    func webView(webView: WKWebView, decidePolicyForNavigationAction navigationAction: WKNavigationAction, decisionHandler: (WKNavigationActionPolicy) -> Void)
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void)
     {
         let urlRequest = navigationAction.request
-        let absoluteURL = urlRequest.URL
+        let absoluteURL = urlRequest.url
         let absoluteString = absoluteURL?.absoluteString
         
-        if (absoluteString!.localizedCaseInsensitiveContainsString("?code="))
+        if (absoluteString!.localizedCaseInsensitiveContains("?code="))
         {
             // Return code to Jawbone instance to further OAuth processing.
             self.delegate = Jawbone.instance
             self.delegate?.receiveAuthCode(absoluteString!)
-            self.dismissViewControllerAnimated(true, completion: {})
+            self.dismiss(animated: true, completion: {})
             // webview navigation action
-            decisionHandler(.Cancel)
+            decisionHandler(.cancel)
         } else {
             // webview navigation action
-            decisionHandler(.Allow)
+            decisionHandler(.allow)
         }
     }
     
     // Error Handling method found from: http://www.appcoda.com/webkit-framework-intro/
-    func webView(webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: NSError)
+    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error)
     {
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
         webView.removeFromSuperview()
     }
     
-    func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!)
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!)
     {
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
     
     

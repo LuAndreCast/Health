@@ -13,7 +13,7 @@ import Foundation
 */
 protocol codeResponder
 {
-    func receiveAuthCode(code:String)
+    func receiveAuthCode(_ code:String)
 }
 
 
@@ -24,7 +24,7 @@ protocol codeResponder
 */
 protocol SelectorResponder
 {
-     func initialCheckResponse( isReady:Bool)
-     func finalCheckResponse( isReady:Bool)
+     func initialCheckResponse( _ isReady:Bool)
+     func finalCheckResponse( _ isReady:Bool)
 }
 
