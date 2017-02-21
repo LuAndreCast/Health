@@ -71,7 +71,7 @@ class UserViewController: UIViewController
         self.getLifetimeStatsData()
     }//eom
     
-    override func viewDidAppear(animated: Bool)
+    override func viewDidAppear(_ animated: Bool)
     {
         self.navigationController?.navigationBar.topItem?.title = "Welcome \(self.user.name)!"
         self.userProfileImageView.layer.cornerRadius = self.userProfileImageView.frame.size.height / 2
@@ -91,8 +91,8 @@ class UserViewController: UIViewController
                 {
                     do
                     {
-                        let jsonResult = try NSJSONSerialization.JSONObjectWithData(responceData, options: NSJSONReadingOptions.AllowFragments)
-                        self.processUserProfileData(jsonResult)
+                        let jsonResult = try JSONSerialization.jsonObject(with: responceData, options: JSONSerialization.ReadingOptions.allowFragments)
+                        self.processUserProfileData(jsonResult as AnyObject)
                     }
                     catch
                     {
@@ -102,14 +102,14 @@ class UserViewController: UIViewController
         }//eo-
     }//eom
     
-    func processUserProfileData(results:AnyObject)
+    func processUserProfileData(_ results:AnyObject)
     {
         //print("results: \(results)")
         
         
         user = User(profile: results)
         
-        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+        DispatchQueue.main.async(execute: { () -> Void in
             
             //name
             self.nameLabel.text = self.user.name
@@ -143,8 +143,8 @@ class UserViewController: UIViewController
             {
                 do
                 {
-                    let jsonResult = try NSJSONSerialization.JSONObjectWithData(responceData, options: NSJSONReadingOptions.AllowFragments)
-                    self.processDeviceData(jsonResult)
+                    let jsonResult = try JSONSerialization.jsonObject(with: responceData, options: JSONSerialization.ReadingOptions.allowFragments)
+                    self.processDeviceData(jsonResult as AnyObject)
                 }
                 catch
                 {
@@ -154,13 +154,13 @@ class UserViewController: UIViewController
         }//eo-
     }//eom
     
-    func processDeviceData(results:AnyObject)
+    func processDeviceData(_ results:AnyObject)
     {
         //print("device info: \(results)")
         
         self.device = Device(device: results)
         
-        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+        DispatchQueue.main.async(execute: { () -> Void in
              self.deviceVersionLabel.text = self.device.version
              self.deviceLastSyncLabel.text = self.device.lastSync
         })
@@ -180,8 +180,8 @@ class UserViewController: UIViewController
                 {
                     do
                     {
-                        let jsonResult = try NSJSONSerialization.JSONObjectWithData(responceData, options: NSJSONReadingOptions.AllowFragments)
-                        self.processFriendsData(jsonResult)
+                        let jsonResult = try JSONSerialization.jsonObject(with: responceData, options: JSONSerialization.ReadingOptions.allowFragments)
+                        self.processFriendsData(jsonResult as AnyObject)
                     }
                     catch
                     {
@@ -191,18 +191,17 @@ class UserViewController: UIViewController
         }//eo-
     }//eom
     
-    func processFriendsData(results:AnyObject)
+    func processFriendsData(_ results:AnyObject)
     {
         //print("friends: \(results)")
         
         self.friends = Friends(friends: results)
         
-        dispatch_async(dispatch_get_main_queue(),
-            { () -> Void in
+        DispatchQueue.main.async(execute: { () -> Void in
                 
             let count:Int = self.friends.list.count
 
-            self.friendsButton.setTitle("\(count) Friends", forState: UIControlState.Normal)    
+            self.friendsButton.setTitle("\(count) Friends", for: UIControlState())    
         })
 
     }//eom
@@ -220,8 +219,8 @@ class UserViewController: UIViewController
                 {
                     do
                     {
-                        let jsonResult = try NSJSONSerialization.JSONObjectWithData(responceData, options: NSJSONReadingOptions.AllowFragments)
-                        self.processBadgesData(jsonResult)
+                        let jsonResult = try JSONSerialization.jsonObject(with: responceData, options: JSONSerialization.ReadingOptions.allowFragments)
+                        self.processBadgesData(jsonResult as AnyObject)
                     }
                     catch
                     {
@@ -231,17 +230,17 @@ class UserViewController: UIViewController
         }//eo-
     }//eom
     
-    func processBadgesData(results:AnyObject)
+    func processBadgesData(_ results:AnyObject)
     {
         //print("badges: \(results)")
         
         self.achievements =  Achievements(badges: results)
         
-        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+        DispatchQueue.main.async(execute: { () -> Void in
         
             let count:Int = self.achievements.list.count
             
-            self.badgesButton.setTitle("\(count) Badges", forState: UIControlState.Normal)
+            self.badgesButton.setTitle("\(count) Badges", for: UIControlState())
         })
     }//eom
     
@@ -259,8 +258,8 @@ class UserViewController: UIViewController
                 {
                     do
                     {
-                        let jsonResult = try NSJSONSerialization.JSONObjectWithData(responceData, options: NSJSONReadingOptions.AllowFragments)
-                        self.processLifetimeStatsData(jsonResult)
+                        let jsonResult = try JSONSerialization.jsonObject(with: responceData, options: JSONSerialization.ReadingOptions.allowFragments)
+                        self.processLifetimeStatsData(jsonResult as AnyObject)
                     }
                     catch
                     {
@@ -270,11 +269,11 @@ class UserViewController: UIViewController
         }//eo-
     }//eom
     
-    func processLifetimeStatsData(results:AnyObject)
+    func processLifetimeStatsData(_ results:AnyObject)
     {
         self.lifeTimeStats = LifeTimeStats(results: results)
         
-        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+        DispatchQueue.main.async { () -> Void in
             //lifetime
             self.lifetime_total_distanceLabel.text      = self.lifeTimeStats.lifetimeDistance
             self.lifetime_total_floorsLabel.text        = self.lifeTimeStats.lifetimeFloors
@@ -295,10 +294,10 @@ class UserViewController: UIViewController
     
     
     //MARK: Navigarion
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         let segueID = segue.identifier
-        let destinationVC = segue.destinationViewController
+        let destinationVC = segue.destination
         
         
         if segueID == "goToFriends"
@@ -324,12 +323,12 @@ class UserViewController: UIViewController
     
     
     //MARK: -
-    @IBAction func signOut(sender: AnyObject)
+    @IBAction func signOut(_ sender: AnyObject)
     {
         //FIX ME - temp
         Storage().deleteDataFromDevice()
         
-        self.performSegueWithIdentifier("goBackHome", sender: self)
+        self.performSegue(withIdentifier: "goBackHome", sender: self)
         
     }//eom
     

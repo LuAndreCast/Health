@@ -21,24 +21,24 @@ class FriendsTableViewController: UITableViewController
     }//eom
 
     // MARK: - Table view data source
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int
+    override func numberOfSections(in tableView: UITableView) -> Int
     {
         return 1
     }//eom
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return self.userFriends.list.count
     }//eom
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let cell:FriendsTableViewCell = (tableView.dequeueReusableCellWithIdentifier("friendCell", forIndexPath: indexPath) as? FriendsTableViewCell)!
+        let cell:FriendsTableViewCell = (tableView.dequeueReusableCell(withIdentifier: "friendCell", for: indexPath) as? FriendsTableViewCell)!
 
         let index = indexPath.row
         if index < self.userFriends.list.count
         {
-            if let currFriend:User = self.userFriends.list .objectAtIndex(index) as? User
+            if let currFriend:User = self.userFriends.list .object(at: index) as? User
             {
                 //badge / achievements
                 cell.setupAchievements(currFriend.achievements.list)
@@ -62,19 +62,19 @@ class FriendsTableViewController: UITableViewController
     }//eom
     
     // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return false
     }
 
     // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the item to be re-orderable.
         return false
     }
 
     // MARK: - Navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }

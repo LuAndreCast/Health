@@ -33,16 +33,15 @@ class FriendsTableViewCell: UITableViewCell {
     }//eom
     
     //MARK: - Achievements
-    func setupAchievements(friendAchievements:NSArray)
+    func setupAchievements(_ friendAchievements:NSArray)
     {
-        for(var iter = 0 ; iter < friendAchievements.count ; iter++)
+        for iter in 0..<friendAchievements.count
         {
-            if let currAchievement:Achievement = friendAchievements .objectAtIndex(iter) as? Achievement
+            if let currAchievement:Achievement = friendAchievements .object(at: iter) as? Achievement
             {
-                if let currImageView:UIImageView = topBadgesImageView[iter]
-                {
+                let currImageView:UIImageView = topBadgesImageView[iter]
                     currImageView.image = currAchievement.shareImage.image
-                }
+                
             }//eo-achievement
         }//eofl
     
@@ -52,7 +51,7 @@ class FriendsTableViewCell: UITableViewCell {
     
     
     //MARK: -
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state

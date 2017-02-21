@@ -10,8 +10,8 @@ import Foundation
 
 class Acvitiy {
     
-    private var _typeOfActivity:String
-    private var _values:dateAndValue
+    fileprivate var _typeOfActivity:String
+    fileprivate var _values:dateAndValue
     
     var typeOfActivity:String
         {
@@ -27,10 +27,6 @@ class Acvitiy {
     {
         self.init()
         
-        if let activity:NSDictionary = results as? NSDictionary
-        {
-            
-        }
     }//eo-c
     
     init()

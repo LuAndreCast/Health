@@ -11,16 +11,16 @@ import Foundation
 class User
 {
     
-    private var _name:String
-    private var _age:Int
-    private var _dob:String
-    private var _gender:String
-    private var _userImage:Image
-    private var _achievements:Achievements
-    private var _memberSince:String
+    fileprivate var _name:String
+    fileprivate var _age:Int
+    fileprivate var _dob:String
+    fileprivate var _gender:String
+    fileprivate var _userImage:Image
+    fileprivate var _achievements:Achievements
+    fileprivate var _memberSince:String
     //
-    private var _height:String
-    private var _timezone:String
+    fileprivate var _height:String
+    fileprivate var _timezone:String
     
     
     var name:String
@@ -66,54 +66,54 @@ class User
         
         if let profileResults = profile as? NSDictionary
         {
-            if let userProfile:NSDictionary = profileResults .objectForKey("user") as? NSDictionary
+            if let userProfile:NSDictionary = profileResults .object(forKey: "user") as? NSDictionary
             {
                 //user image
-                if let avatarUrlString:String = userProfile .objectForKey("avatar150") as? String
+                if let avatarUrlString:String = userProfile .object(forKey: "avatar150") as? String
                 {
                     _userImage = Image(imageUrl: avatarUrlString)
                 }
                 
                 //name
-                if let fullName:String = userProfile .objectForKey("fullName") as? String where fullName != ""
+                if let fullName:String = userProfile .object(forKey: "fullName") as? String, fullName != ""
                 {
                     _name = fullName
                 }
-                else if let displayName:String = userProfile .objectForKey("displayName") as? String where displayName != ""
+                else if let displayName:String = userProfile .object(forKey: "displayName") as? String, displayName != ""
                 {
                     _name = displayName
                 }
-                else if let nickname:String = userProfile .objectForKey("nickname") as? String where nickname != ""
+                else if let nickname:String = userProfile .object(forKey: "nickname") as? String, nickname != ""
                 {
                     _name = nickname
                 }
                 
                 //age
-                if let age:Int  = userProfile .objectForKey("age") as? Int
+                if let age:Int  = userProfile .object(forKey: "age") as? Int
                 {
                     _age = age
                 }
                 
                 //dob
-                if let dob:String   = userProfile .objectForKey("dateOfBirth") as? String
+                if let dob:String   = userProfile .object(forKey: "dateOfBirth") as? String
                 {
                     _dob = dob
                 }
                 
                 //gender
-                if let gender:String    = userProfile .objectForKey("gender") as? String
+                if let gender:String    = userProfile .object(forKey: "gender") as? String
                 {
                     _gender = gender
                 }
                 
                 //topBadges
-                if let topBadges:NSArray = userProfile .objectForKey("topBadges") as? NSArray
+                if let topBadges:NSArray = userProfile .object(forKey: "topBadges") as? NSArray
                 {
                     _achievements = Achievements(topBadges: topBadges)
                 }
                 
                 //memberSince
-                if let memberSince:String = userProfile .objectForKey("memberSince") as? String
+                if let memberSince:String = userProfile .object(forKey: "memberSince") as? String
                 {
                     _memberSince = memberSince
                 }

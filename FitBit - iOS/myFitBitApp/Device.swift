@@ -10,9 +10,9 @@ import Foundation
 
 class Device {
 
-    private var _version:String
-    private var _id:String
-    private var _lastSync:String
+    fileprivate var _version:String
+    fileprivate var _id:String
+    fileprivate var _lastSync:String
     
     
     var version:String
@@ -40,19 +40,19 @@ class Device {
             if let deviceDict:NSDictionary = deviceList.firstObject as? NSDictionary
             {
                 //device name
-                if let deviceVersion:String = deviceDict .objectForKey("deviceVersion") as? String
+                if let deviceVersion:String = deviceDict .object(forKey: "deviceVersion") as? String
                 {
                     _version = deviceVersion
                 }
                 
                 //sync time
-                if let deviceLastSync:String = deviceDict .objectForKey("lastSyncTime") as? String
+                if let deviceLastSync:String = deviceDict .object(forKey: "lastSyncTime") as? String
                 {
                     _lastSync = deviceLastSync
                 }
                 
                 //id
-                if let deviceID:String = deviceDict .objectForKey("id") as? String
+                if let deviceID:String = deviceDict .object(forKey: "id") as? String
                 {
                     _id = deviceID
                 }

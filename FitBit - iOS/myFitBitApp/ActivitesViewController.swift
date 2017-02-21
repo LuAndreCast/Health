@@ -38,7 +38,7 @@ class ActivitesViewController: UIViewController {
         self.updateDateButtonColors()
         
         
-        if let childs:NSArray = self.childViewControllers
+        if let childs:NSArray = self.childViewControllers as NSArray?
         {
             if childs.count > 0
             {
@@ -55,7 +55,7 @@ class ActivitesViewController: UIViewController {
 
     
     //MARK: Activity Selectionw
-    @IBAction func activitySelectionChanged(sender: UISwitch)
+    @IBAction func activitySelectionChanged(_ sender: UISwitch)
     {
         for currSwitch in selectionSwitches
         {
@@ -73,23 +73,23 @@ class ActivitesViewController: UIViewController {
     
     
     //MARK: - Data Selection
-    @IBAction func dateSelectionChanged(sender: UIButton)
+    @IBAction func dateSelectionChanged(_ sender: UIButton)
     {
         for currButton in dateButtons
         {
             if currButton == sender
             {
-                currButton.selected = true
+                currButton.isSelected = true
                 
                 currButton.layer.borderWidth = 3.0
-                currButton.layer.borderColor = UIColor.blackColor().CGColor
+                currButton.layer.borderColor = UIColor.black.cgColor
                 
             }
             else
             {
-                currButton.selected = false
+                currButton.isSelected = false
                 
-                currButton.layer.borderColor = UIColor.clearColor().CGColor
+                currButton.layer.borderColor = UIColor.clear.cgColor
             }
         }//eofl
     }//eo-a
@@ -101,29 +101,29 @@ class ActivitesViewController: UIViewController {
         {
             currButton.layer.cornerRadius = 15
             
-            if currButton.selected == true
+            if currButton.isSelected == true
             {
                 currButton.layer.borderWidth = 3.0
-                currButton.layer.borderColor = UIColor.blackColor().CGColor
+                currButton.layer.borderColor = UIColor.black.cgColor
             }
         }
         
         //search button
         searchButton.layer.cornerRadius = 15
         searchButton.layer.borderWidth = 4.0
-        searchButton.layer.borderColor = UIColor.lightGrayColor().CGColor
+        searchButton.layer.borderColor = UIColor.lightGray.cgColor
     }//eom
     
     //MARK: 
     func getActivityData()
     {
-        self.activityIndicator.hidden = false
+        self.activityIndicator.isHidden = false
         self.activityIndicator.startAnimating()
         
         var activity:String = String()
         for currSwitch in selectionSwitches
         {
-            if currSwitch.on == true
+            if currSwitch.isOn == true
             {
                 let switchTag = currSwitch.tag
                 switch(switchTag)
@@ -151,7 +151,7 @@ class ActivitesViewController: UIViewController {
         var period:String = String()
         for currButton in dateButtons
         {
-            if currButton.selected == true
+            if currButton.isSelected == true
             {
                 let buttonTag = currButton.tag
                 
@@ -177,8 +177,8 @@ class ActivitesViewController: UIViewController {
         
         
         var activityURLString:String = "\(temp.url.activities)"
-        activityURLString = activityURLString .stringByAppendingString("\(activity)")
-        activityURLString = activityURLString .stringByAppendingString("/date/today/\(period).json")
+        activityURLString = activityURLString + "\(activity)"
+        activityURLString = activityURLString + "/date/today/\(period).json"
         
         //print(activityURLString)
         
@@ -188,17 +188,17 @@ class ActivitesViewController: UIViewController {
                 {
                     print("error: \(error?.localizedDescription)")
                     
-                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    DispatchQueue.main.async(execute: { () -> Void in
                         self.activityIndicator.stopAnimating()
-                        self.activityIndicator.hidden = true
+                        self.activityIndicator.isHidden = true
                     })
                 }
                 else if let responceData = data
                 {
                     do
                     {
-                        let jsonResult = try NSJSONSerialization.JSONObjectWithData(responceData, options: NSJSONReadingOptions.AllowFragments)
-                        self.processActivityData(jsonResult)
+                        let jsonResult = try JSONSerialization.jsonObject(with: responceData, options: JSONSerialization.ReadingOptions.allowFragments)
+                        self.processActivityData(jsonResult as AnyObject)
                     }
                     catch
                     {
@@ -209,27 +209,27 @@ class ActivitesViewController: UIViewController {
     }
     
     
-    func processActivityData(results:AnyObject)
+    func processActivityData(_ results:AnyObject)
     {
         //print("results: \(results)")
         
-        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+        DispatchQueue.main.async(execute: { () -> Void in
             self.activityIndicator.stopAnimating()
-            self.activityIndicator.hidden = true
+            self.activityIndicator.isHidden = true
         })
         
         //print("results: \(results)")
         
         if let resultDict:NSDictionary = results as? NSDictionary
         {
-            let activityKey:NSArray = resultDict.allKeys
+            let activityKey:NSArray = resultDict.allKeys as NSArray
             if activityKey.count > 0
             {
                 //activity key
                 guard let activityType:String = activityKey[0] as? String else { return }
                 if activityType == "errors"
                 {
-                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    DispatchQueue.main.async(execute: { () -> Void in
                         self.tableController.activities = NSArray()
                         self.tableController.typeOfActivity = "NO DATA"
                         self.tableController.navBar.topItem?.title = "NO DATA"
@@ -239,9 +239,9 @@ class ActivitesViewController: UIViewController {
                 else
                 {
                     //activity list
-                    if let activitiesList:NSArray = resultDict .objectForKey(activityType) as? NSArray
+                    if let activitiesList:NSArray = resultDict .object(forKey: activityType) as? NSArray
                     {
-                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        DispatchQueue.main.async(execute: { () -> Void in
                             self.tableController.activities = activitiesList
                             self.tableController.typeOfActivity = activityType
                             self.tableController.navBar.topItem?.title = activityType
@@ -254,12 +254,12 @@ class ActivitesViewController: UIViewController {
         }
     }//eo
     
-    @IBAction func searchActivity(sender: AnyObject)
+    @IBAction func searchActivity(_ sender: AnyObject)
     {
         self.getActivityData()
     }//eo-a
     // MARK: - Navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }

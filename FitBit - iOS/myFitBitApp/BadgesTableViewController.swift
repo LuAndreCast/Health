@@ -25,20 +25,20 @@ class BadgesTableViewController: UITableViewController
  
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int
+    override func numberOfSections(in tableView: UITableView) -> Int
     {
         return 1
     }//eom
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return badges.list.count
     }//eom
 
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let cell:badgesTableViewCell = (tableView.dequeueReusableCellWithIdentifier("badgeCell", forIndexPath: indexPath) as? badgesTableViewCell)!
+        let cell:badgesTableViewCell = (tableView.dequeueReusableCell(withIdentifier: "badgeCell", for: indexPath) as? badgesTableViewCell)!
         
         let index:Int = indexPath.row
         if index < self.badges.list.count
@@ -73,19 +73,19 @@ class BadgesTableViewController: UITableViewController
     
     
     
-   override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+   override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return false
     }
    
-   override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+   override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the item to be re-orderable.
         return false
     }
 
     
     // MARK: - Navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     }
     
     //MARK: - Memory

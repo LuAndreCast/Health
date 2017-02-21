@@ -11,15 +11,15 @@ import Foundation
 class Achievement {
     
     
-    private var _backgroundColor:Color
-    private var _image300:Image
-    private var _image125:Image
-    private var _shareImage:Image
-    private var _description:String
-    private var _mobileDescription:String
-    private var _shortName:String
-    private var _category:String
-    private var _dateTime:String
+    fileprivate var _backgroundColor:Color
+    fileprivate var _image300:Image
+    fileprivate var _image125:Image
+    fileprivate var _shareImage:Image
+    fileprivate var _description:String
+    fileprivate var _mobileDescription:String
+    fileprivate var _shortName:String
+    fileprivate var _category:String
+    fileprivate var _dateTime:String
     
     
     var shareImage:Image
@@ -73,19 +73,19 @@ class Achievement {
         self.init()
         
         //share image
-        if let topBadgeImageUrlString:String = dataDict .objectForKey("shareImage640px") as? String
+        if let topBadgeImageUrlString:String = dataDict .object(forKey: "shareImage640px") as? String
         {
             _shareImage = Image(imageUrl: topBadgeImageUrlString)
         }
         
         //image  - 125
-        if let badgeImage:String = dataDict .objectForKey("image125px") as? String
+        if let badgeImage:String = dataDict .object(forKey: "image125px") as? String
         {
             _image125 = Image(imageUrl: badgeImage)
         }
         
         //image - 300
-        if let badgeImage:String = dataDict .objectForKey("image300px") as? String
+        if let badgeImage:String = dataDict .object(forKey: "image300px") as? String
         {
             _image300 = Image(imageUrl: badgeImage)
         }
@@ -93,38 +93,38 @@ class Achievement {
        
         
         //color
-        if let badgeColor:String = dataDict .objectForKey("badgeGradientStartColor") as? String
+        if let badgeColor:String = dataDict .object(forKey: "badgeGradientStartColor") as? String
         {
             _backgroundColor = Color(colorInHex: badgeColor)
         }
         
         //description
-        if let badgeDescription:String = dataDict .objectForKey("description") as? String
+        if let badgeDescription:String = dataDict .object(forKey: "description") as? String
         {
             _description = badgeDescription
         }
         
         //shortName
-        if let shortName:String = dataDict .objectForKey("shortName") as? String
+        if let shortName:String = dataDict .object(forKey: "shortName") as? String
         {
             _shortName = shortName
         }
         
         
         //mobile Description
-        if let badgeMobileDescription:String = dataDict .objectForKey("mobileDescription") as? String
+        if let badgeMobileDescription:String = dataDict .object(forKey: "mobileDescription") as? String
         {
             _mobileDescription = badgeMobileDescription
         }
         
         //dateTime
-        if let badgeDateTime:String = dataDict .objectForKey("dateTime") as? String
+        if let badgeDateTime:String = dataDict .object(forKey: "dateTime") as? String
         {
             _dateTime = badgeDateTime
         }
         
         //category
-        if let badgeCategory:String = dataDict .objectForKey("category") as? String
+        if let badgeCategory:String = dataDict .object(forKey: "category") as? String
         {
             _category = badgeCategory
         }

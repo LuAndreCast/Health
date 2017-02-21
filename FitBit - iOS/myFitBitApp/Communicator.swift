@@ -10,7 +10,7 @@ import Foundation
 
 class Communicator {
     
-    private let _oauth = Oauth.Oauth2
+    fileprivate let _oauth = Oauth.Oauth2
 
     
     init()

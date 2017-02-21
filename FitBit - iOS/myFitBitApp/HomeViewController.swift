@@ -28,7 +28,7 @@ class HomeViewController: UIViewController
         
     }//eom
     
-    override func viewDidAppear(animated: Bool)
+    override func viewDidAppear(_ animated: Bool)
     {
         if vcInitLoaded == false
         {
@@ -36,18 +36,18 @@ class HomeViewController: UIViewController
         }
     }//eom
     
-    override func viewWillDisappear(animated: Bool)
+    override func viewWillDisappear(_ animated: Bool)
     {
         
         self.loadingFitbitIndicator.stopAnimating()
-        self.loadingFitbitIndicator.hidden = true
-        self.connectingFitbitMessageLabel.hidden = true
+        self.loadingFitbitIndicator.isHidden = true
+        self.connectingFitbitMessageLabel.isHidden = true
     }//eom
     
     //MARK: - Notifications
-    func handleUrlReceived(sender: NSNotification)
+    func handleUrlReceived(_ sender: Notification)
     {
-        if let dataReceived:[NSObject: AnyObject] = sender .userInfo
+        if let dataReceived:[AnyHashable: Any] = sender .userInfo
         {
             let codeRetrieved:Bool = oauth.handleAuthorizationResponce(dataReceived)
             if codeRetrieved
@@ -56,9 +56,9 @@ class HomeViewController: UIViewController
                     { (accessTokenRetrieved, error) -> Void in
                         if accessTokenRetrieved == true
                         {
-                            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                            DispatchQueue.main.async(execute: { () -> Void in
                                 
-                                self.performSegueWithIdentifier("goToUserView", sender: nil)
+                                self.performSegue(withIdentifier: "goToUserView", sender: nil)
                                 
                             })
                         }
@@ -74,11 +74,11 @@ class HomeViewController: UIViewController
     func initSetup()
     {
         
-        self.loadingFitbitIndicator.hidden = false
-        self.connectingFitbitMessageLabel.hidden = false
+        self.loadingFitbitIndicator.isHidden = false
+        self.connectingFitbitMessageLabel.isHidden = false
         self.loadingFitbitIndicator.startAnimating()
         
-        NSNotificationCenter .defaultCenter() .addObserver(self, selector: Selector("handleUrlReceived:"), name: "handleUrlReceived", object: nil)
+        NotificationCenter.default .addObserver(self, selector: #selector(HomeViewController.handleUrlReceived(_:)), name: NSNotification.Name(rawValue: "handleUrlReceived"), object: nil)
         
         let codeWasSaved:Bool =  self.oauth.requestAuthorization("fitbit")
         if codeWasSaved
@@ -87,17 +87,17 @@ class HomeViewController: UIViewController
                 { (accessTokenRetrieved, error) -> Void in
                     if accessTokenRetrieved == true
                     {
-                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        DispatchQueue.main.async(execute: { () -> Void in
                             
-                            self.performSegueWithIdentifier("goToUserView", sender: nil)
+                            self.performSegue(withIdentifier: "goToUserView", sender: nil)
                             
                         })
                     }
                     else
                     {
-                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        DispatchQueue.main.async(execute: { () -> Void in
                             
-                            self.oauth.requestAuthorization("fitbit")
+                           _ = self.oauth.requestAuthorization("fitbit")
                             
                         })
                     }
@@ -106,7 +106,7 @@ class HomeViewController: UIViewController
     }//eom
     
     // MARK: - Navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         if segue.identifier == "goToUserView"
         {
@@ -116,7 +116,7 @@ class HomeViewController: UIViewController
         
     }
     
-    @IBAction func unwindToHome(segue: UIStoryboardSegue)
+    @IBAction func unwindToHome(_ segue: UIStoryboardSegue)
     {
         print("back in home")
     }//eo-a

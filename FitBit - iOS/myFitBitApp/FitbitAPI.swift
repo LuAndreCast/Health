@@ -17,11 +17,11 @@ class FitBitAPI:Fitbit
     {
         var urlString:String = String()
             
-        urlString = urlString .stringByAppendingString("\(url.authorization)")
-        urlString = urlString .stringByAppendingString("response_type=code")
-        urlString = urlString .stringByAppendingString("&client_id=\(clientID)")
-        urlString = urlString .stringByAppendingString("&redirect_uri=\(redirectURI)")
-        urlString = urlString .stringByAppendingString("&scope=\(scope)")
+        urlString = urlString + "\(url.authorization)"
+        urlString = urlString + "response_type=code"
+        urlString = urlString + "&client_id=\(clientID)"
+        urlString = urlString + "&redirect_uri=\(redirectURI)"
+        urlString = urlString + "&scope=\(scope)"
         
         return urlString
     }//eom
@@ -29,31 +29,30 @@ class FitBitAPI:Fitbit
     
     
     //MARK: - Get Fitbit Data
-    func getUserDataFromFitbit(urlString:String, completion: ((data: NSData?, response: NSURLResponse?, error: NSError? ) -> Void))
+    func getUserDataFromFitbit(_ urlString:String, completion: @escaping ((_ data: Data?, _ response: URLResponse?, _ error: NSError? ) -> Void))
     {
         //url
-        if let url:NSURL = NSURL(string: urlString)
+        if let url:URL = URL(string: urlString)
         {
             //request
-            let request:NSMutableURLRequest = NSMutableURLRequest(URL: url)
+            let request:NSMutableURLRequest = NSMutableURLRequest(url: url)
             
             //request type
-            request.HTTPMethod = "GET"
+            request.httpMethod = "GET"
             
             //request header
             request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
             
             //request task
-            let task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler:
-                { (data, response, error) in
-                    completion(data: data, response: response, error: error)
+            let task = URLSession.shared.dataTask(with: request as URLRequest, completionHandler: { (data:Data?, response:URLResponse?, error:Error?) in
+                completion(data, response, error as? NSError)
             })
             task.resume()
         }
         else
         {
             let error:NSError = NSError(domain: "missing url string", code: 190, userInfo: nil)
-            completion(data: nil, response: nil, error: error)
+            completion(nil, nil, error)
         }
         
         

@@ -10,7 +10,7 @@ import Foundation
 
 class Achievements {
     
-    private var _list:NSMutableArray
+    fileprivate var _list:NSMutableArray
     
     var list:NSArray
         {
@@ -21,14 +21,14 @@ class Achievements {
     {
         self.init()
         
-        if let badgesList:NSArray = badges .objectForKey("badges") as? NSArray
+        if let badgesList:NSArray = badges.object(forKey: "badges") as? NSArray
         {
             for currBadge in badgesList
             {
                 if let badge:NSDictionary = currBadge as? NSDictionary
                 {
                     let newAchievement:Achievement =  Achievement(dataDict: badge)
-                    _list .addObject(newAchievement)
+                    _list .add(newAchievement)
                 }
             }//eofl
         }
@@ -44,7 +44,7 @@ class Achievements {
             if let badge:NSDictionary = currBadge as? NSDictionary
             {
                 let newAchievement:Achievement =  Achievement(dataDict: badge)
-                _list .addObject(newAchievement)
+                _list .add(newAchievement)
             }
         }//eofl
     }//eo-c

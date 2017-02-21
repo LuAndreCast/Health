@@ -12,13 +12,13 @@ import Foundation
 
 class LifeTimeStats
 {
-    private var _bestDistance:dateAndValue
-    private var _bestFloors:dateAndValue
-    private var _bestSteps:dateAndValue
+    fileprivate var _bestDistance:dateAndValue
+    fileprivate var _bestFloors:dateAndValue
+    fileprivate var _bestSteps:dateAndValue
     
-    private var _lifetimeDistance:String
-    private var _lifetimeFloors:String
-    private var _lifetimeSteps:String
+    fileprivate var _lifetimeDistance:String
+    fileprivate var _lifetimeFloors:String
+    fileprivate var _lifetimeSteps:String
 
     var bestDistance:dateAndValue
         {
@@ -60,24 +60,24 @@ class LifeTimeStats
         if let resultDict:NSDictionary = results as? NSDictionary
         {
             //total
-            if let lifetimeDict:NSDictionary = resultDict .objectForKey("lifetime") as? NSDictionary
+            if let lifetimeDict:NSDictionary = resultDict .object(forKey: "lifetime") as? NSDictionary
             {
-                if let totalDict:NSDictionary = lifetimeDict .objectForKey("total") as? NSDictionary
+                if let totalDict:NSDictionary = lifetimeDict .object(forKey: "total") as? NSDictionary
                 {
                     //distance
-                    if let distance:Double = totalDict .objectForKey("distance") as? Double
+                    if let distance:Double = totalDict .object(forKey: "distance") as? Double
                     {
                         _lifetimeDistance = "\(round(distance))"
                     }
                     
                     //floors
-                    if let floors:Double = totalDict .objectForKey("floors") as? Double
+                    if let floors:Double = totalDict .object(forKey: "floors") as? Double
                     {
                         _lifetimeFloors = "\(round(floors))"
                     }
                     
                     //steps
-                    if let steps:Double = totalDict .objectForKey("steps") as? Double
+                    if let steps:Double = totalDict .object(forKey: "steps") as? Double
                     {
                         _lifetimeSteps = "\(round(steps))"
                     }
@@ -85,27 +85,27 @@ class LifeTimeStats
             }//eo-total lifetime
             
             //best
-            if let bestDict:NSDictionary = resultDict .objectForKey("best") as?NSDictionary
+            if let bestDict:NSDictionary = resultDict .object(forKey: "best") as?NSDictionary
             {
-                if let totalDict:NSDictionary = bestDict .objectForKey("total") as? NSDictionary
+                if let totalDict:NSDictionary = bestDict .object(forKey: "total") as? NSDictionary
                 {
                     //distance
-                    if let distanceDict:NSDictionary = totalDict .objectForKey("distance") as? NSDictionary
+                    if let distanceDict:NSDictionary = totalDict .object(forKey: "distance") as? NSDictionary
                     {
                         //date
-                        if let date:String = distanceDict .objectForKey("date") as? String ,
-                           let value:Double = distanceDict .objectForKey("value") as? Double
+                        if let date:String = distanceDict .object(forKey: "date") as? String ,
+                           let value:Double = distanceDict .object(forKey: "value") as? Double
                         {
                             _bestDistance = dateAndValue(date: date, value: "\(round(value))")
                         }
                     }//eo-best distance
                     
                     //floors
-                    if let floorsDict:NSDictionary = totalDict .objectForKey("floors") as? NSDictionary
+                    if let floorsDict:NSDictionary = totalDict .object(forKey: "floors") as? NSDictionary
                     {
                         //date
-                        if let date:String = floorsDict .objectForKey("date") as? String,
-                            let value:Double = floorsDict .objectForKey("value") as? Double
+                        if let date:String = floorsDict .object(forKey: "date") as? String,
+                            let value:Double = floorsDict .object(forKey: "value") as? Double
                         {
                             _bestFloors = dateAndValue(date: date, value: "\(round(value))")
                         }
@@ -113,11 +113,11 @@ class LifeTimeStats
                     
                     
                     //step
-                    if let stepsDict:NSDictionary = totalDict .objectForKey("steps") as? NSDictionary
+                    if let stepsDict:NSDictionary = totalDict .object(forKey: "steps") as? NSDictionary
                     {
                         //date
-                        if let date:String = stepsDict .objectForKey("date") as? String,
-                           let value:Double = stepsDict .objectForKey("value") as? Double
+                        if let date:String = stepsDict .object(forKey: "date") as? String,
+                           let value:Double = stepsDict .object(forKey: "value") as? Double
                         {
                             _bestSteps = dateAndValue(date: date, value: "\(round(value))")
                         }

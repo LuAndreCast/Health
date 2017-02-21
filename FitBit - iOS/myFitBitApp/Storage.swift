@@ -12,7 +12,7 @@ class Storage {
     
     static let permanent = Storage()
     
-    private let defaults = NSUserDefaults.standardUserDefaults()
+    fileprivate let defaults = UserDefaults.standard
     
     init()
     {
@@ -20,25 +20,25 @@ class Storage {
     }
     
     //MARK: - Saving/Retrieve Data from Device
-    func saveDataOnDevice(code:String, refreshToken:String)
+    func saveDataOnDevice(_ code:String, refreshToken:String)
     {
-        defaults .setBool(true, forKey: "save")
-        defaults .setObject(code, forKey: "code")
-        defaults .setObject(refreshToken, forKey: "refreshToken")
+        defaults .set(true, forKey: "save")
+        defaults .set(code, forKey: "code")
+        defaults .set(refreshToken, forKey: "refreshToken")
         defaults.synchronize()
     }//eom
     
     func retrievedDataFromDevice()->NSDictionary?
     {
-        let codeSaved:Bool = defaults .boolForKey("save")
+        let codeSaved:Bool = defaults .bool(forKey: "save")
         if codeSaved
         {
-            if let codeString:String = defaults .objectForKey("code") as? String where codeString != "",
-                let refreshTokenString:String = defaults .objectForKey("refreshToken") as? String where refreshTokenString != ""
+            if let codeString:String = defaults .object(forKey: "code") as? String, codeString != "",
+                let refreshTokenString:String = defaults .object(forKey: "refreshToken") as? String, refreshTokenString != ""
             {
                 let keys    = ["code", "refreshToken"]
                 let values  = [codeString, refreshTokenString]
-                return NSDictionary(objects: keys , forKeys: values)
+                return NSDictionary(objects: keys , forKeys: values as [NSCopying])
             }
         }//eo-saved values
         
@@ -47,9 +47,9 @@ class Storage {
     
     func deleteDataFromDevice()
     {
-        defaults.removeObjectForKey("save")
-        defaults.removeObjectForKey("code")
-        defaults.removeObjectForKey("refreshToken")
+        defaults.removeObject(forKey: "save")
+        defaults.removeObject(forKey: "code")
+        defaults.removeObject(forKey: "refreshToken")
         defaults.synchronize()
     }//eom
     

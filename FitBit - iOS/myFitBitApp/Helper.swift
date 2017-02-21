@@ -19,35 +19,36 @@ struct dateAndValue
 
 
 //MARK: - Image Download
-func getDataFromUrl(url:NSURL, completion: ((data: NSData?, response: NSURLResponse?, error: NSError? ) -> Void))
+func getDataFromUrl(_ url:URL, completion: @escaping ((_ data: Data?, _ response: URLResponse?, _ error: NSError? ) -> Void))
 {
-    NSURLSession.sharedSession().dataTaskWithURL(url)
-        { (data, response, error) in
-            completion(data: data, response: response, error: error)
-        }.resume()
+    URLSession.shared.dataTask(with: url, completionHandler:
+        { (data:Data?, response:URLResponse?, error:Error?) in
+        completion(data, response, error as? NSError)
+    })
+    .resume()
 }
 
 
 
-func getImageFromUrl(url:NSURL, completion: ((imageDownloaded: UIImage, error: NSError? ) -> Void))
+func getImageFromUrl(_ url:URL, completion: @escaping ((_ imageDownloaded: UIImage, _ error: NSError? ) -> Void))
 {
-    NSURLSession.sharedSession().dataTaskWithURL(url)
-        { (data, response, error) in
+    URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
             
             if error == nil
             {
-                if let imageData:NSData = data
+                if let imageData:Data = data
                 {
                     if let image:UIImage = UIImage(data: imageData)
                     {
-                        completion(imageDownloaded: image, error: nil)
+                        completion(image, nil)
                     }
                 }
             }//eo-image
             
             //no image
-            completion(imageDownloaded: UIImage(), error: error)
-        }.resume()
+            completion(UIImage(), error as NSError?)
+        })        
+.resume()
 }//eo-m
 
 

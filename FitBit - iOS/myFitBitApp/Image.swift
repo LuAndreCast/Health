@@ -11,8 +11,8 @@ import UIKit
 
 class Image
 {
-    private var _imageUrl:String
-    private var _image:UIImage
+    fileprivate var _imageUrl:String
+    fileprivate var _image:UIImage
 
     var image:UIImage
         {
@@ -27,7 +27,7 @@ class Image
         _imageUrl = imageUrl
         
         //fetching image
-        if let imageUrl:NSURL = NSURL(string: imageUrl)
+        if let imageUrl:URL = URL(string: imageUrl)
         {
             getDataFromUrl(imageUrl) { (data, response, error) -> Void in
                 if error != nil
@@ -36,11 +36,11 @@ class Image
                 }
                 else
                 {
-                    if let imageData:NSData = data
+                    if let imageData:Data = data
                     {
                         if let imageDownloaded:UIImage = UIImage(data: imageData)
                         {
-                            dispatch_async(dispatch_get_main_queue())
+                            DispatchQueue.main.async
                                 { () -> Void in
                                     self._image = imageDownloaded
                             }

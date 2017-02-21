@@ -16,7 +16,7 @@ class Oauth {
     //private let fitbit = FitBitAPI.model
     let fitbit = FitBitAPI.model //temp for now
     
-    private let permanentStorage = Storage.permanent
+    fileprivate let permanentStorage = Storage.permanent
     
     init()
     {
@@ -29,12 +29,12 @@ class Oauth {
     //MARK: - Authorization Request
     
     /* returns true when data is retrieved from permant storage */
-    func requestAuthorization(option:String)->Bool
+    func requestAuthorization(_ option:String)->Bool
     {
         if let dataSaved:NSDictionary = self.permanentStorage.retrievedDataFromDevice()
         {
-            if let code:String = dataSaved .objectForKey("code") as? String,
-            let refreshToken:String = dataSaved .objectForKey("refreshToken") as? String
+            if let code:String = dataSaved .object(forKey: "code") as? String,
+            let refreshToken:String = dataSaved .object(forKey: "refreshToken") as? String
             {
                 switch(option)
                 {
@@ -65,16 +65,16 @@ class Oauth {
         return false
     }//eom
     
-    private func makeRequestThruSafari(url:String)
+    fileprivate func makeRequestThruSafari(_ url:String)
     {
-        if let finalUrl:NSURL = NSURL(string: url)
+        if let finalUrl:URL = URL(string: url)
         {
             print("\n \(finalUrl)")
-            UIApplication .sharedApplication() .openURL(finalUrl)
+            UIApplication.shared .openURL(finalUrl)
         }
     }//eom
     
-    func handleAuthorizationResponce(responce:[NSObject: AnyObject])->Bool
+    func handleAuthorizationResponce(_ responce:[AnyHashable: Any])->Bool
     {
         if let dirtyCode:String = responce["code"] as? String
         {
@@ -92,13 +92,13 @@ class Oauth {
     }//eom
     
     //MARK: Gets auth code from url
-    func processCodeFromUrl(dirtyCode:String)->String?
+    func processCodeFromUrl(_ dirtyCode:String)->String?
     {
-        if dirtyCode.containsString("myfitbitapp://?code=") && dirtyCode.containsString("#")
+        if dirtyCode.contains("myfitbitapp://?code=") && dirtyCode.contains("#")
         {
-            var cleanCode:String = dirtyCode.stringByReplacingOccurrencesOfString("myfitbitapp://?code=", withString: "")
+            var cleanCode:String = dirtyCode.replacingOccurrences(of: "myfitbitapp://?code=", with: "")
             
-            let lists:[String] = cleanCode.componentsSeparatedByString("#")
+            let lists:[String] = cleanCode.components(separatedBy: "#")
             
             cleanCode = lists[0]
             
@@ -159,18 +159,18 @@ class Oauth {
     }//eom
     
     //MARK: - Create Header for Basic Autherization
-    private func createBasicAuthHeaderString(clientID:String, secretKey:String)->String
+    fileprivate func createBasicAuthHeaderString(_ clientID:String, secretKey:String)->String
     {
         let headerString:String = "\(clientID):\(secretKey)"
-        let headerData:NSData   = headerString.dataUsingEncoding(NSUTF8StringEncoding)!
-        let base64HeaderString  = headerData.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
+        let headerData:Data   = headerString.data(using: String.Encoding.utf8)!
+        let base64HeaderString  = headerData.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
 
         return base64HeaderString
     }//eom
 
     
     //MARK: - Access Token Request
-    func requestAccessToken(option:String, completion: ((accessTokenRetrieved: Bool?, error: NSError? ) -> Void))
+    func requestAccessToken(_ option:String, completion: @escaping ((_ accessTokenRetrieved: Bool?, _ error: NSError? ) -> Void))
     {
         var url:String          = ""
         var redirect_uri:String = ""
@@ -194,50 +194,43 @@ class Oauth {
         
         
         //url
-        if let url:NSURL = NSURL(string: url)
+        if let url:URL = URL(string: url)
         {
             print("\n \(url)")
             
             //request
-            let request:NSMutableURLRequest = NSMutableURLRequest(URL: url)
+            let request:NSMutableURLRequest = NSMutableURLRequest(url: url)
             
             //request type
-            request.HTTPMethod = "POST"
+            request.httpMethod = "POST"
             
             //request header
             let headerString  = createBasicAuthHeaderString(clientID, secretKey: secretKey)
             
             request.setValue("Basic \(headerString)", forHTTPHeaderField: "Authorization")
-            
-            //request body
-            do
-            {
-                //set body format
-                request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-                
-                //adding body
-                request.HTTPBody = createdAccessTokenRequestBody(redirect_uri, code: code, client_id: clientID)
-            }
-            catch
-            {
-                print("could not add data to body")
-            }
+           
+            //set body format
+            request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+
+            //adding body
+            request.httpBody = createdAccessTokenRequestBody(redirect_uri, code: code, client_id: clientID)
+           
             
             //request task
-            let task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler:
+            let task = URLSession.shared.dataTask(with: request as URLRequest, completionHandler:
                 { (data, response, error) in
                     
                     if error != nil
                     {
-                        print("error \(error?.localizedDescription)")
-                        completion(accessTokenRetrieved: false, error: error)
+                        print("error \(error!.localizedDescription)")
+                        completion(false, error as? NSError)
                     }
                     else
                     {
                         if let responseData = data
                         {
                             do{
-                                let jsonResult = try NSJSONSerialization.JSONObjectWithData(responseData, options: NSJSONReadingOptions.AllowFragments)
+                                let jsonResult = try JSONSerialization.jsonObject(with: responseData, options: JSONSerialization.ReadingOptions.allowFragments)
                                 
                                 print("tokens: \(jsonResult)")
                                 
@@ -245,17 +238,17 @@ class Oauth {
                                 if let resultsDict:NSDictionary = jsonResult as? NSDictionary
                                 {
                                     //errors
-                                    if let errorsDict = resultsDict .objectForKey("errors")
+                                    if let errorsDict = resultsDict .object(forKey: "errors")
                                     {
                                         print("\n\n errors: \(errorsDict)")
                                         self.permanentStorage.deleteDataFromDevice()
-                                        completion(accessTokenRetrieved: false, error: nil)
+                                        completion(false, nil)
                                     }
                                     
                                     
                                     //access token & refresh token
-                                    if let accessToken:String = resultsDict .objectForKey("access_token") as? String where accessToken != "",
-                                        let refreshToken:String = resultsDict .objectForKey("refresh_token") as? String where refreshToken != ""
+                                    if let accessToken:String = resultsDict .object(forKey: "access_token") as? String, accessToken != "",
+                                        let refreshToken:String = resultsDict .object(forKey: "refresh_token") as? String, refreshToken != ""
                                     {
                                         switch(option)
                                         {
@@ -268,46 +261,46 @@ class Oauth {
                                                 //save on device
                                                 self.permanentStorage.saveDataOnDevice(self.fitbit.authCode, refreshToken: refreshToken)
                                                 
-                                                completion(accessTokenRetrieved: true, error: nil)
+                                                completion(true, nil)
                                                 break
                                             default:
-                                                completion(accessTokenRetrieved: false, error: nil)
+                                                completion(false,nil)
                                                 break
                                         }//eo-switch
                                     }
                                     else
                                     {
-                                        completion(accessTokenRetrieved: false, error: nil)
+                                        completion(false,nil)
                                     }
                                 }
                                 else
                                 {
                                     print("un-able to get Dict")
-                                    completion(accessTokenRetrieved: false, error: nil)
+                                    completion(false,nil)
                                 }
                             }
                             catch
                             {
                                 print("could not serialize data\n")
-                                completion(accessTokenRetrieved: false, error: nil)
+                                completion(false,nil)
                             }
                         }
                     }
                     
-                    completion(accessTokenRetrieved: false, error: error)
+                    completion(false,error as NSError?)
             })
             task.resume()
         }
         else
         {
             let error:NSError = NSError(domain: "missing url string", code: 190, userInfo: nil)
-            completion(accessTokenRetrieved: false, error: error)
+            completion(false, error)
         }
     }//eom
    
     
     //MARK:  Access Token Body Builder
-    private func createdAccessTokenRequestBody(redirect_uri:String, code:String, client_id:String)->NSData?
+    fileprivate func createdAccessTokenRequestBody(_ redirect_uri:String, code:String, client_id:String)->Data?
     {
         let parameters:NSMutableDictionary  = NSMutableDictionary()
         parameters["grant_type"]            = "authorization_code"
@@ -321,24 +314,24 @@ class Oauth {
         let paramKeys = parameters.allKeys
         for currKey in paramKeys
         {
-            guard let currValue:String = parameters .objectForKey(currKey) as? String else { continue }
+            guard let currValue:String = parameters .object(forKey: currKey) as? String else { continue }
             
             if addedFirstKey == false
             {
                 let stringToAdd = "\(currKey)=\(currValue)"
-                bodyString = bodyString .stringByAppendingString(stringToAdd)
+                bodyString = bodyString .appending(stringToAdd) as NSString
                 
                 addedFirstKey = true
             }
             else
             {
                 let stringToAdd = "&\(currKey)=\(currValue)"
-                bodyString = bodyString .stringByAppendingString(stringToAdd)
+                bodyString = bodyString .appending(stringToAdd) as NSString
                 
             }
         }//eofl
         
-        if let bodyStringData:NSData = bodyString.dataUsingEncoding(NSUTF8StringEncoding)
+        if let bodyStringData:Data = bodyString.data(using: String.Encoding.utf8.rawValue)
         {
             return bodyStringData
         }
@@ -351,7 +344,7 @@ class Oauth {
     
     
     //MARK:  Refresh Token Body Builder
-    private func createdRefreshTokenRequestBody(refresh_token:String)->NSData?
+    fileprivate func createdRefreshTokenRequestBody(_ refresh_token:String)->Data?
     {
         let parameters:NSMutableDictionary  = NSMutableDictionary()
         parameters["grant_type"]            = "refresh_token"
@@ -362,24 +355,24 @@ class Oauth {
         let paramKeys = parameters.allKeys
         for currKey in paramKeys
         {
-            guard let currValue:String = parameters .objectForKey(currKey) as? String else { continue }
+            guard let currValue:String = parameters .object(forKey: currKey) as? String else { continue }
             
             if addedFirstKey == false
             {
                 let stringToAdd = "\(currKey)=\(currValue)"
-                bodyString = bodyString .stringByAppendingString(stringToAdd)
+                bodyString = bodyString .appending(stringToAdd) as NSString
                 
                 addedFirstKey = true
             }
             else
             {
                 let stringToAdd = "&\(currKey)=\(currValue)"
-                bodyString = bodyString .stringByAppendingString(stringToAdd)
+                bodyString = bodyString .appending(stringToAdd) as NSString
                 
             }
         }//eofl
         
-        if let bodyStringData:NSData = bodyString.dataUsingEncoding(NSUTF8StringEncoding)
+        if let bodyStringData:Data = bodyString.data(using: String.Encoding.utf8.rawValue)
         {
             return bodyStringData
         }
@@ -388,7 +381,7 @@ class Oauth {
     }//eom
     
  //MARK: - Refresh Token Request
-    func requestRefreshToken(option:String, completion: ((accessTokenRetrieved: Bool?, error: NSError? ) -> Void))
+    func requestRefreshToken(_ option:String, completion: @escaping ((_ accessTokenRetrieved: Bool?, _ error: NSError? ) -> Void))
     {
     
     var url:String              = ""
@@ -411,48 +404,40 @@ class Oauth {
     }
 
     //url
-    if let url:NSURL = NSURL(string: url)
+    if let url:URL = URL(string: url)
     {
         //request
-        let request:NSMutableURLRequest = NSMutableURLRequest(URL: url)
+        let request:NSMutableURLRequest = NSMutableURLRequest(url: url)
         
         //request type
-        request.HTTPMethod = "POST"
+        request.httpMethod = "POST"
         
         //request header
         let headerString  = createBasicAuthHeaderString(clientID, secretKey: secretKey)
         
         request.setValue("Basic \(headerString)", forHTTPHeaderField: "Authorization")
         
-        //request body
-        do
-        {
-            //set body format
-            request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-            
-            //adding body
-            request.HTTPBody = createdRefreshTokenRequestBody(refreshToken)
-        }
-        catch
-        {
-            print("could not add data to body")
-        }
+        //set body format
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         
+        //adding body
+        request.httpBody = createdRefreshTokenRequestBody(refreshToken)
+    
         //request task
-        let task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler:
+        let task = URLSession.shared.dataTask(with: request as URLRequest, completionHandler:
         { (data, response, error) in
            
             if error != nil
             {
                 print("error \(error?.localizedDescription)")
-                completion(accessTokenRetrieved: false, error: error)
+                completion(false,error as NSError?)
             }
             else
             {
                 if let responseData = data
                 {
                     do{
-                        let jsonResult = try NSJSONSerialization.JSONObjectWithData(responseData, options: NSJSONReadingOptions.AllowFragments)
+                        let jsonResult = try JSONSerialization.jsonObject(with: responseData, options: JSONSerialization.ReadingOptions.allowFragments)
 
                         print("tokens: \(jsonResult)")
 
@@ -460,17 +445,17 @@ class Oauth {
                             if let resultsDict:NSDictionary = jsonResult as? NSDictionary
                             {
                                 //errors
-                                if let errorsDict = resultsDict .objectForKey("errors")
+                                if let errorsDict = resultsDict .object(forKey: "errors")
                                 {
                                     print("\n\n errors: \(errorsDict)")
                                     self.permanentStorage.deleteDataFromDevice()
-                                    completion(accessTokenRetrieved: false, error: nil)
+                                    completion(false,nil)
                                 }
                                 
                                 
                                 //access token & refresh token
-                                if let accessToken:String = resultsDict .objectForKey("access_token") as? String where accessToken != "",
-                                    let refreshToken:String = resultsDict .objectForKey("refresh_token") as? String where refreshToken != ""
+                                if let accessToken:String = resultsDict .object(forKey: "access_token") as? String, accessToken != "",
+                                    let refreshToken:String = resultsDict .object(forKey: "refresh_token") as? String, refreshToken != ""
                                 {
                                     switch(option)
                                     {
@@ -482,40 +467,40 @@ class Oauth {
                                             //save on device
                                             self.permanentStorage.saveDataOnDevice(self.fitbit.authCode, refreshToken: refreshToken)
                                             
-                                            completion(accessTokenRetrieved: true, error: nil)
+                                            completion(true,nil)
                                             break
                                         default:
-                                            completion(accessTokenRetrieved: false, error: nil)
+                                            completion(false, nil)
                                             break
                                     }
                                 }
                                 else
                                 {
-                                    completion(accessTokenRetrieved: false, error: nil)
+                                    completion(false,nil)
                                 }
                             }
                             else
                             {
                                 print("un-able to get Dict")
-                                completion(accessTokenRetrieved: false, error: nil)
+                                completion(false,nil)
                             }
                         }
                         catch
                         {
                             print("could not serialize data\n")
-                            completion(accessTokenRetrieved: false, error: nil)
+                            completion(false,nil)
                         }
                     
                 }//eo-data
             }//eo-else
-             completion(accessTokenRetrieved: false, error: error)
+             completion( false,error as NSError?)
         })
         task.resume()
     }
     else
     {
         let error:NSError = NSError(domain: "missing url string", code: 190, userInfo: nil)
-        completion(accessTokenRetrieved: false, error: error)
+        completion(false, error)
     }
 }//eom
 

@@ -11,7 +11,7 @@ import Foundation
 
 class Friends
 {
-    private var _list:NSMutableArray
+    fileprivate var _list:NSMutableArray
     
     var list:NSArray
         {
@@ -24,14 +24,14 @@ class Friends
     
         if let friendDict:NSDictionary = friends as? NSDictionary
         {
-            if let friendList:NSArray = friendDict .objectForKey("friends") as? NSArray
+            if let friendList:NSArray = friendDict .object(forKey: "friends") as? NSArray
             {
                 for currFriend in friendList
                 {
                     if let friendProfile:NSDictionary = currFriend as? NSDictionary
                     {
                         let newFriend:User = User(profile: friendProfile)
-                        _list .addObject(newFriend)
+                        _list .add(newFriend)
                     }
                 }//eofl
             }

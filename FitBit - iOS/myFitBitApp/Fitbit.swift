@@ -24,13 +24,13 @@ class Fitbit
     }
     
     //the following need to be updated according to your app settings in fitbit.com
-    private let _CLIENT_ID:String     = "ENTER_CLIENT_ID"
-    private let _SECRET_KEY:String    = "ENTER_SECRET_KEY"
-    private let _REDIRECT_URI:String  = "myFitBitApp://"
+    fileprivate let _CLIENT_ID:String     = "ENTER_CLIENT_ID"
+    fileprivate let _SECRET_KEY:String    = "ENTER_SECRET_KEY"
+    fileprivate let _REDIRECT_URI:String  = "myFitBitApp://"
     
     //these are the scopes or user info you will like to have/query so you may not need all of these scopes
-    private let _scope:String         = "activity%20heartrate%20location%20nutrition%20profile%20settings%20sleep%20social%20weight"
-    private var _urls:urls
+    fileprivate let _scope:String         = "activity%20heartrate%20location%20nutrition%20profile%20settings%20sleep%20social%20weight"
+    fileprivate var _urls:urls
     
     var clientID:String
         {
